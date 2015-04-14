@@ -1,0 +1,36 @@
+C:\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.exe.config
+C:\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.exe
+C:\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.pdb
+C:\Apps\IGTradingService\IGTradingService\bin\Debug\log4net.dll
+C:\Apps\IGTradingService\IGTradingService\bin\Debug\log4net.xml
+C:\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.csprojResolveAssemblyReference.cache
+C:\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.exe
+C:\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.exe.config
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.exe
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTradingService.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTrading.Data.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTrading.Model.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\log4net.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\RestSharp.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Dapper.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTrading.Data.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGTrading.Model.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\log4net.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\RestSharp.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Dapper.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Dapper.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.exe
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\obj\Debug\IGTradingService.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGPublicPcl.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\DotNetClient_N2.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\PCLCrypto.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Validation.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Mono.Security.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\IGPublicPcl.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\PCLCrypto.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\PCLCrypto.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingService\bin\Debug\Validation.xml

@@ -1,0 +1,20 @@
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\IGTrading.Model.dll
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\IGTrading.Model.pdb
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Bson.dll
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.Core.dll
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.dll
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Bson.xml
+C:\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.xml
+C:\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.csprojResolveAssemblyReference.cache
+C:\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.dll
+C:\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\IGTrading.Model.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\IGTrading.Model.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Bson.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Bson.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\bin\Debug\MongoDB.Driver.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTrading.Model\obj\Debug\IGTrading.Model.pdb

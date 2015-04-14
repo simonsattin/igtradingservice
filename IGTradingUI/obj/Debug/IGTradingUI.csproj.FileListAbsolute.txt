@@ -1,0 +1,82 @@
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.exe.config
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.exe
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Bson.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.Core.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Bson.xml
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.xml
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.csprojResolveAssemblyReference.cache
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\MainWindow.baml
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\MainWindow.g.cs
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\App.g.cs
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI_MarkupCompile.cache
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.g.resources
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.Properties.Resources.resources
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.csproj.GenerateResource.Cache
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.exe
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\System.Windows.Interactivity.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI_MarkupCompile.lref
+C:\Apps\IGTradingService\IGTradingUI\obj\Debug\App.baml
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Data.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Model.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.dll
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Data.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Model.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.pdb
+C:\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.exe.config
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.exe
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTradingUI.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Data.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Model.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Bson.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.dll
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Data.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\IGTrading.Model.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\GalaSoft.MvvmLight.Platform.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Bson.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\MongoDB.Driver.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.pdb
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\bin\Debug\Dapper.xml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\MainWindow.baml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\MainWindow.g.cs
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\App.g.cs
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI_MarkupCompile.cache
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI_MarkupCompile.lref
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\App.baml
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.g.resources
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.Properties.Resources.resources
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.csproj.GenerateResource.Cache
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.exe
+C:\Users\Simon\Google Drive\Apps\IGTradingService\IGTradingUI\obj\Debug\IGTradingUI.pdb
