@@ -70,67 +70,74 @@ namespace IGTradingService
 
                     subscription.TickerUpdate += (ticker, bid, offer, status) =>
                     {
-                        var customOrder = customOrders.SingleOrDefault(c => ticker.Contains(c.IGEpic));
-
-                        if (!currentIGWorkingOrders.Exists(o => o.marketData.epic == customOrder.IGEpic))
+                        if (status == "TRADEABLE")
                         {
-                            //check paramters
-                            Console.WriteLine(string.Format("{0}/{1}", bid, offer));
+                            var customOrder = customOrders.SingleOrDefault(c => ticker.Contains(c.IGEpic));
 
-                            var spreadAdjustment = ((offer - bid) * 0.6m);
-                            var entryLevel = Math.Round(spreadAdjustment + customOrder.EntryLevel, 1);
-                            var percentFromEntry = Math.Round(((offer - entryLevel) / entryLevel) * 100, 2);
-
-                            Console.WriteLine(string.Format("{0}% from entry", percentFromEntry));
-
-                            var positionSize = Math.Round(riskAmount / customOrder.Risk, 2);
-
-                            Console.WriteLine(string.Format("Position Size: {0}", positionSize));
-
-                            var relativeSpreadSize = Math.Round(((offer - bid) / customOrder.Risk) * 100, 2);
-
-                            Console.WriteLine(string.Format("Spread % of R: {0}", relativeSpreadSize));
-
-                            if (relativeSpreadSize <= 30)
+                            if (!currentIGWorkingOrders.Exists(o => o.marketData.epic == customOrder.IGEpic))
                             {
-                                if (percentFromEntry <= 5)
+                                //check paramters
+                                Console.WriteLine(string.Format("{0}/{1}", bid, offer));
+
+                                var spreadAdjustment = ((offer - bid) * 0.6m);
+                                var entryLevel = Math.Round(spreadAdjustment + customOrder.EntryLevel, 1);
+                                var percentFromEntry = Math.Round(((offer - entryLevel) / entryLevel) * 100, 2);
+
+                                Console.WriteLine(string.Format("{0}% from entry", percentFromEntry));
+
+                                var positionSize = Math.Round(riskAmount / customOrder.Risk, 2);
+
+                                Console.WriteLine(string.Format("Position Size: {0}", positionSize));
+
+                                var relativeSpreadSize = Math.Round(((offer - bid) / customOrder.Risk) * 100, 2);
+
+                                Console.WriteLine(string.Format("Spread % of R: {0}", relativeSpreadSize));
+
+                                if (relativeSpreadSize <= 30)
                                 {
-                                    Console.WriteLine("Generating order");
-                                    CreateWorkingOrderRequest orderRequest = new CreateWorkingOrderRequest()
+                                    if (percentFromEntry <= 5)
                                     {
-                                        epic = customOrder.IGEpic,
-                                        expiry = customOrder.Expiry.ToString("MMM-yy").ToUpper(),
-                                        direction = customOrder.IsBuy ? "BUY" : "SELL",
-                                        size = positionSize,
-                                        level = entryLevel,
-                                        type = "STOP",
-                                        currencyCode = "GBP",
-                                        timeInForce = "GOOD_TILL_DATE",
-                                        goodTillDate = DateTime.Today.ToString("yyyy/MM/dd 23:59:59"),
-                                        guaranteedStop = false,
-                                        stopDistance = customOrder.Risk,
-                                    };
+                                        Console.WriteLine("Generating order");
+                                        CreateWorkingOrderRequest orderRequest = new CreateWorkingOrderRequest()
+                                        {
+                                            epic = customOrder.IGEpic,
+                                            expiry = customOrder.Expiry.ToString("MMM-yy").ToUpper(),
+                                            direction = customOrder.IsBuy ? "BUY" : "SELL",
+                                            size = positionSize,
+                                            level = entryLevel,
+                                            type = "STOP",
+                                            currencyCode = "GBP",
+                                            timeInForce = "GOOD_TILL_DATE",
+                                            goodTillDate = DateTime.Today.ToString("yyyy/MM/dd 23:59:59"),
+                                            guaranteedStop = false,
+                                            stopDistance = customOrder.Risk,
+                                        };
 
-                                    var orderResponse = igRestApiClient.createWorkingOrderV2(orderRequest);
+                                        var orderResponse = igRestApiClient.createWorkingOrderV2(orderRequest);
 
-                                    Console.WriteLine(string.Format("DealReference: {0}", orderResponse.Result.Response.dealReference));
+                                        Console.WriteLine(string.Format("DealReference: {0}", orderResponse.Result.Response.dealReference));
 
-                                    //reget the IG working orders
-                                    currentIGWorkingOrders = igRestApiClient.workingOrdersV2().Result.Response.workingOrders;
+                                        //reget the IG working orders
+                                        currentIGWorkingOrders = igRestApiClient.workingOrdersV2().Result.Response.workingOrders;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Ignoring as too far from entry");
+                                    }
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Ignoring as too far from entry");
+                                    Console.WriteLine("Ignoring as spread too large");
                                 }
                             }
                             else
                             {
-                                Console.WriteLine("Ignoring as spread too large");
+                                Console.WriteLine("Already have order with IG");
                             }
                         }
                         else
                         {
-                            Console.WriteLine("Already have order with IG");
+                            Console.WriteLine(string.Format("Ignoring as status {0} is not TRADEABLE", status));
                         }
                     };
                     
