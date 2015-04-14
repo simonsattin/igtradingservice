@@ -42,6 +42,8 @@ namespace IGTradingService
 
             if (result && (result.Response != null) && (result.Response.accounts.Count > 0))
             {
+                var accountId = result.Response.accounts[0].accountId;
+
                 Console.WriteLine(string.Format("Logged in: {0} | {1} | {2}",
                     result.Response.accounts[0].accountId,
                     result.Response.accounts[0].accountName,
@@ -67,6 +69,8 @@ namespace IGTradingService
                     var currentIGWorkingOrders = igRestApiClient.workingOrdersV2().Result.Response.workingOrders;
                     
                     var subscription = new MarketSubscription();
+
+                    var accountSubscription = new AccountSubscription();
 
                     subscription.TickerUpdate += (ticker, bid, offer, status) =>
                     {
@@ -142,9 +146,12 @@ namespace IGTradingService
                     };
                     
                     var streamerKey = streamClient.subscribeToMarketDetails(epics.ToArray(),subscription);
-                  
+
+                    var accountSubscriptionKey = streamClient.subscribeToAccountDetailsKey(accountId, accountSubscription);
+                    
                     Console.ReadLine();
 
+                    streamClient.UnsubscribeTableKey(accountSubscriptionKey);
                     streamClient.UnsubscribeTableKey(streamerKey);
                     streamClient.disconnect();
                     igRestApiClient.logout();
@@ -153,6 +160,16 @@ namespace IGTradingService
                 {
                     Console.Write(string.Format("Failed to login: {0} --> {1}", result.StatusCode, result.Response));
                 }
+            }
+        }
+
+        public class AccountSubscription : HandyTableListenerAdapter
+        {
+            public override void OnUpdate(int itemPos, string itemName, IUpdateInfo update)
+            {
+
+
+                base.OnUpdate(itemPos, itemName, update);
             }
         }
 
