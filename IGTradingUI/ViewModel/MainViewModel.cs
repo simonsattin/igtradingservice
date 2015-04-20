@@ -5,6 +5,7 @@ using IGTrading.Data.SqlServer;
 using IGTrading.Model;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace IGTradingUI.ViewModel
 {
@@ -45,17 +46,26 @@ namespace IGTradingUI.ViewModel
 
             RefreshCustomOrders();
         }
-        
+
+
         public ObservableCollection<CustomOrder> CustomOrders
         {
-            get
-            {
-                return _CustomOrders;
-            }
+            get { return _CustomOrders; }
             set
             {
                 _CustomOrders = value;
                 RaisePropertyChanged("CustomOrders");
+            }
+        }
+
+        private CustomOrder _SelectedCustomOrder;
+        public CustomOrder SelectedCustomOrder
+        {
+            get { return _SelectedCustomOrder; }
+            set
+            {
+                _SelectedCustomOrder = value;
+                RaisePropertyChanged("SelectedCustomOrder");
             }
         }
 
@@ -65,8 +75,20 @@ namespace IGTradingUI.ViewModel
             set { _NewCustomOrder = value; RaisePropertyChanged("NewCustomOrder"); }
         }
 
+        public ICommand DeleteCommand { get; set; }
+
+        private void DeleteSelected()
+        {
+            if (null != SelectedCustomOrder)
+            {
+                CustomOrders.Remove(SelectedCustomOrder);
+            }
+        }
+        
         private void RefreshCustomOrders()
         {
+            DeleteCommand = new RelayCommand(DeleteSelected);
+
             CustomOrders = new ObservableCollection<CustomOrder>(_CustomOrderRepository.GetAll());
         }
 
