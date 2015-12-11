@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IGTradeManager.UI.Views.MainWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace IGTradeManager.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
+            Application.Run(new MainWindowView());
         }
     }
 }
