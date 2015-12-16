@@ -1,0 +1,4 @@
+public interface IIndexConfigViewModel : IController
+    {
+        BindingList<Index> Indicies { get; }                
+    }
