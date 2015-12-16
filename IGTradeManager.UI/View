@@ -1,0 +1,28 @@
+public partial class IndexConfigView : DevExpressBaseUserControl
+    {
+        private IIndexConfigViewModel _ViewModel;
+
+        public IndexConfigView()
+        {
+            InitializeComponent();
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return; //The controller cannot be fetched at design time because the program has not loaded the kernel.
+            init();
+        }
+
+        private void init()
+        {
+            _ViewModel = GetController<IIndexConfigViewModel>();
+
+            DataContext.DataSource = _ViewModel;            
+        }   
+
+        private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "ProxyWeightsCheckInterval")
+            {
+                TimeSpan val = (TimeSpan)e.Value;
+                e.DisplayText = val.ToString(@"hh\:mm\:ss");
+            }
+        }
+    }
