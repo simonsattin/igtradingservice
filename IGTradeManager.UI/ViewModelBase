@@ -1,0 +1,34 @@
+public abstract class ViewModelBase : INotifyPropertyChanged
+    {        
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            OnPropertyChangedExplicit(propertyName);
+        }
+
+        protected void OnPropertyChanged<TProperty>(Expression<Func<TProperty>> projection)
+        {
+            var memberExpression = (MemberExpression)projection.Body;
+            OnPropertyChangedExplicit(memberExpression.Member.Name);
+        }
+
+        void OnPropertyChangedExplicit(string propertyName)
+        {
+            //thread safe
+            PropertyChangedEventHandler handler;
+            lock (this)
+            {
+                handler = PropertyChanged;
+            }
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
+    }
