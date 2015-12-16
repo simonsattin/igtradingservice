@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace IGTradeManager.UI
 {
-    public class ContainerProvider
+    internal class ContainerProvider
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+            (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);   
 
+        public readonly static Container Container = new Container();
+
+        public static void SetupContainer()
+        {
+            Container.RegisterSingle<IDataCache, DataCache>();
+            
+            Container.Verify();
+        }
     }
 }
