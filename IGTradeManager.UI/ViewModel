@@ -1,0 +1,17 @@
+public class IndexConfigViewModel : ViewModelBase, IIndexConfigViewModel
+    {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+                (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private readonly IDataCache _DataCache;        
+
+        public IndexConfigViewModel(IDataCache dataCache)
+        {
+            _DataCache = dataCache;            
+        }      
+
+        public BindingList<Index> Indicies
+        {
+            get { return _DataCache.Indicies; }
+        }
+    }
