@@ -12,9 +12,15 @@ namespace IGTradeManager.UI.Views.MainWindow
 {
     public partial class MainWindowView : Form
     {
+        
         public MainWindowView()
         {
             InitializeComponent();
+        }
+
+        private void _LoginButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

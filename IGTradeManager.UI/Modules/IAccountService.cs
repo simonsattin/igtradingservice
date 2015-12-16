@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IGTradeManager.UI
+namespace IGTradeManager.UI.Modules
 {
-    public class ContainerProvider
+    public interface IAccountService
     {
-
+        void Login();
     }
 }
