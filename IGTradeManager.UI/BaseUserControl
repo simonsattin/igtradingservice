@@ -1,0 +1,32 @@
+/// <summary>
+    /// Base class for UserControls. Provides functionality for retriveing controls.
+    /// </summary>
+    public class BaseUserControl : UserControl
+    {
+        /// <summary>
+        /// Gets a controller of the given type.
+        /// </summary>
+        /// <typeparam name="T">The type of the controller to get.</typeparam>
+        /// <returns>An instance of a controller of the given type.</returns>
+        protected T GetController<T>() where T : class, IController
+        {
+            return ContainerProvider.Container.GetInstance<T>(); ;
+        }
+
+        public BaseUserControl()
+        {
+            //Load += BaseUserControl_Load;
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // BaseUserControl
+            // 
+            this.Name = "BaseUserControl";
+            this.Size = new System.Drawing.Size(313, 305);
+            this.ResumeLayout(false);
+
+        }
+    }
