@@ -18,6 +18,8 @@ namespace IGTradeManager.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            ContainerProvider.SetupContainer();
+
             Application.Run(new MainWindowView());
         }
     }

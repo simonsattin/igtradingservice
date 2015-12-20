@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._LoginButton = new System.Windows.Forms.Button();
+            this.DataContext = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.DataContext)).BeginInit();
             this.SuspendLayout();
             // 
             // _LoginButton
@@ -41,6 +44,11 @@
             this._LoginButton.UseVisualStyleBackColor = true;
             this._LoginButton.Click += new System.EventHandler(this._LoginButton_Click);
             // 
+            // DataContext
+            // 
+            this.DataContext.ControlToInvokeOn = this;
+            this.DataContext.DataSource = typeof(IGTradeManager.UI.Views.MainWindow.IMainWindowViewModel);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -49,6 +57,7 @@
             this.Controls.Add(this._LoginButton);
             this.Name = "MainWindowView";
             this.Text = "MainWindowView";
+            ((System.ComponentModel.ISupportInitialize)(this.DataContext)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -56,5 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Button _LoginButton;
+        private ThreadSafeBindingSource DataContext;
     }
 }

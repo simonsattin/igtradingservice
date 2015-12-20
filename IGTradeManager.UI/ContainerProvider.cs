@@ -1,4 +1,7 @@
-﻿using System;
+﻿using IGTradeManager.UI.Modules;
+using IGTradeManager.UI.Views.MainWindow;
+using SimpleInjector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +18,8 @@ namespace IGTradeManager.UI
 
         public static void SetupContainer()
         {
-            Container.RegisterSingle<IDataCache, DataCache>();
+            Container.RegisterSingleton<IAccountService, AccountService>();
+            Container.RegisterSingleton<IMainWindowViewModel, MainWindowViewModel>();
             
             Container.Verify();
         }

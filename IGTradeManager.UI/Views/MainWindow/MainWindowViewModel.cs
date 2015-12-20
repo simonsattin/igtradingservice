@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace IGTradeManager.UI.Views.MainWindow
 {
-    public class MainWindowViewModel : IMainWindowViewModel
+    public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {
         private readonly IAccountService _AccountService;
 
