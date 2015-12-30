@@ -9,5 +9,11 @@ namespace IGTradeManager.UI.Views.MainWindow
     public interface IMainWindowViewModel : IController
     {
         void Login();
+
+        void Logout();
+
+        string AccountId { get; set; }
+        string AccountName { get; set; }
+        decimal? Balance { get; set; }
     }
 }

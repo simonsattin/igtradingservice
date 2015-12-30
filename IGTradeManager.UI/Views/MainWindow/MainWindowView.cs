@@ -33,5 +33,10 @@ namespace IGTradeManager.UI.Views.MainWindow
         {
             _ViewModel.Login();
         }
+
+        private void _LogoutButton_Click(object sender, EventArgs e)
+        {
+            _ViewModel.Logout();
+        }
     }
 }

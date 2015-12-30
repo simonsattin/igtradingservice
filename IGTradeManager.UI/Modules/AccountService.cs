@@ -9,7 +9,14 @@ namespace IGTradeManager.UI.Modules
 {
     public class AccountService : IAccountService
     {
-        public void Login()
+        private readonly IGStreamingApiClient _StreamClient;
+
+        public AccountService()
+        {
+            _StreamClient = new IGStreamingApiClient();
+        }
+
+        public bool Login()
         {
             const string API_KEY = "fd3e7ec86cb96ad3d1e4aa13302ca9b14f337547";
             const string URL = "https://api.ig.com/gateway";
@@ -37,15 +44,22 @@ namespace IGTradeManager.UI.Modules
                     result.Response.accounts[0].accountName,
                     result.Response.accountInfo.balance));
 
-                conversationContext = igRestApiClient.GetConversationContext();
+                conversationContext = igRestApiClient.GetConversationContext();                
 
-                IGStreamingApiClient streamClient = new IGStreamingApiClient();
-
-                var connectedToLightStream = streamClient.Connect(response.Result.Response.currentAccountId,
+                var connectedToLightStream = _StreamClient.Connect(response.Result.Response.currentAccountId,
                         conversationContext.cst,
                         conversationContext.xSecurityToken, conversationContext.apiKey,
                         response.Result.Response.lightstreamerEndpoint);
             }
+
+            return true;
         }
+
+        public void Logout()
+        {
+            _StreamClient.disconnect();
+        }
+
+
     }
 }
