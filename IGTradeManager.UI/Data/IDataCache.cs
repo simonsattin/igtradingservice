@@ -13,6 +13,7 @@ namespace IGTradeManager.UI.Data
         void Reset();
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
+        BindingList<IgWorkingOrder> IgWorkingOrders { get; }
 
         string AccountId { get; set; }
         string AccountName { get; set; }

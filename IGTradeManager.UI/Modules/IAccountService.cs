@@ -10,5 +10,6 @@ namespace IGTradeManager.UI.Modules
     {
         bool Login(string apiKey, string username, string password);
         void Logout();
+        void LoadWorkingOrders();
     }
 }

@@ -26,5 +26,35 @@ namespace IGTradeManager.UI.Data.DataAccess
                 return connection.Query<DatabaseOrder>("select * from dbo.[Order]").ToList();
             }
         }
+
+        public int SaveDatabaseOrder(DatabaseOrder order)
+        {
+            using (var connection = new SqlConnection(_ConnectionString))
+            {
+                string sql = @"
+UPDATE dbo.[Order]
+set Name = @Name,
+    Ticker = @Ticker,
+    IgInstrument = @IgInstrument,
+    Expiry = @Expiry,
+    NextEarnings = @NextEarnings,
+    BreakoutLevel = @BreakoutLevel,
+    StopDistance = @StopDistance
+WHERE Id = @Id
+";
+
+                return connection.Execute(sql, order);
+            }
+        }
+
+        public int DeleteDatabaseOrder(int id)
+        {
+            using (var connection = new SqlConnection(_ConnectionString))
+            {
+                string sql = @"DELETE FROM dbo.[Order] WHERE Id = @Id";
+
+                return connection.Execute(sql, id);
+            }
+        }
     }
 }

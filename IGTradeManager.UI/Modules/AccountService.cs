@@ -1,5 +1,6 @@
 ﻿using IGPublicPcl;
 using IGTradeManager.UI.Data;
+using IGTradeManager.UI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,35 @@ namespace IGTradeManager.UI.Modules
 
             return true;
         }
+
+        public void LoadWorkingOrders()
+        {
+            var currentIGWorkingOrders = _IGApi.workingOrdersV2().Result.Response.workingOrders;
+
+            foreach (var item in currentIGWorkingOrders)
+            {
+                _DataCache.IgWorkingOrders.Add(new IgWorkingOrder()
+                {
+                    Epic = item.marketData.epic,
+                    DealId = item.workingOrderData.dealId,
+                    Direction = item.workingOrderData.direction,
+                    OrderSize = item.workingOrderData.orderSize,
+                    OrderLevel = item.workingOrderData.orderLevel,
+                    TimeInForce = item.workingOrderData.timeInForce,
+                    GoodTillDate = item.workingOrderData.goodTillDate,
+                    CreatedDate = item.workingOrderData.createdDate,
+                    GuaranteedStop = item.workingOrderData.guaranteedStop,
+                    OrderType = item.workingOrderData.orderType,
+                    StopDistance = item.workingOrderData.stopDistance,
+                    LimitDistance = item.workingOrderData.limitDistance,
+                    CurrencyCode = item.workingOrderData.currencyCode,
+                    InstrumentName = item.marketData.instrumentName,
+                    Expiry = item.marketData.expiry,
+                    MarketStatus = item.marketData.marketStatus
+                });
+            }
+        }
+
 
         public void Logout()
         {

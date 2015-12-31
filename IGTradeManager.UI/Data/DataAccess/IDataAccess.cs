@@ -9,6 +9,8 @@ namespace IGTradeManager.UI.Data.DataAccess
 {
     public interface IDataAccess
     {
-        List<DatabaseOrder> GetOrders();        
+        List<DatabaseOrder> GetOrders();
+        int SaveDatabaseOrder(DatabaseOrder order);
+        int DeleteDatabaseOrder(int id);  
     }
 }

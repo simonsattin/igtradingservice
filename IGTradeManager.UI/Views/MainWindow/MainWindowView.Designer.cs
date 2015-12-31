@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this._LoginButton = new System.Windows.Forms.Button();
             this.DataContext = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
             this._LogoutButton = new System.Windows.Forms.Button();
@@ -53,8 +60,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this._DatabaseOrdersGridView = new System.Windows.Forms.DataGridView();
-            this.databaseOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
-            this.label11 = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,9 +74,35 @@
             this.stopDistanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.positionSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spreadPercentOfRiskDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteGridViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.databaseOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this._IgWorkingOrdersDataView = new System.Windows.Forms.DataGridView();
+            this.dealIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.epicDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeInForceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goodTillDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guaranteedStopDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stopDistanceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.limitDistanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.currencyCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.instrumentNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiryDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marketStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.igWorkingOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
+            this._LogMessageLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._IgWorkingOrdersDataView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.igWorkingOrdersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _LoginButton
@@ -286,29 +317,17 @@
             this.percentFromEntryDataGridViewTextBoxColumn,
             this.stopDistanceDataGridViewTextBoxColumn,
             this.positionSizeDataGridViewTextBoxColumn,
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn});
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn,
+            this.deleteGridViewColumn});
             this._DatabaseOrdersGridView.DataSource = this.databaseOrdersBindingSource;
             this._DatabaseOrdersGridView.Location = new System.Drawing.Point(41, 321);
             this._DatabaseOrdersGridView.Name = "_DatabaseOrdersGridView";
             this._DatabaseOrdersGridView.RowTemplate.Height = 40;
-            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2570, 418);
+            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2570, 358);
             this._DatabaseOrdersGridView.TabIndex = 20;
+            this._DatabaseOrdersGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellClick);
+            this._DatabaseOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellContentClick);
             this._DatabaseOrdersGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellValueChanged);
-            // 
-            // databaseOrdersBindingSource
-            // 
-            this.databaseOrdersBindingSource.ControlToInvokeOn = this;
-            this.databaseOrdersBindingSource.DataMember = "DatabaseOrders";
-            this.databaseOrdersBindingSource.DataSource = this.DataContext;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 253);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(238, 32);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Database Orders:";
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -316,48 +335,61 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // tickerDataGridViewTextBoxColumn
             // 
             this.tickerDataGridViewTextBoxColumn.DataPropertyName = "Ticker";
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tickerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.tickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
             this.tickerDataGridViewTextBoxColumn.Name = "tickerDataGridViewTextBoxColumn";
             // 
             // igInstrumentDataGridViewTextBoxColumn
             // 
             this.igInstrumentDataGridViewTextBoxColumn.DataPropertyName = "IgInstrument";
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.igInstrumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.igInstrumentDataGridViewTextBoxColumn.HeaderText = "IgInstrument";
             this.igInstrumentDataGridViewTextBoxColumn.Name = "igInstrumentDataGridViewTextBoxColumn";
             // 
             // expiryDataGridViewTextBoxColumn
             // 
             this.expiryDataGridViewTextBoxColumn.DataPropertyName = "Expiry";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.expiryDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.expiryDataGridViewTextBoxColumn.HeaderText = "Expiry";
             this.expiryDataGridViewTextBoxColumn.Name = "expiryDataGridViewTextBoxColumn";
             // 
             // nextEarningsDataGridViewTextBoxColumn
             // 
             this.nextEarningsDataGridViewTextBoxColumn.DataPropertyName = "NextEarnings";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nextEarningsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.nextEarningsDataGridViewTextBoxColumn.HeaderText = "NextEarnings";
             this.nextEarningsDataGridViewTextBoxColumn.Name = "nextEarningsDataGridViewTextBoxColumn";
             // 
             // breakoutLevelDataGridViewTextBoxColumn
             // 
             this.breakoutLevelDataGridViewTextBoxColumn.DataPropertyName = "BreakoutLevel";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.breakoutLevelDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.breakoutLevelDataGridViewTextBoxColumn.HeaderText = "BreakoutLevel";
             this.breakoutLevelDataGridViewTextBoxColumn.Name = "breakoutLevelDataGridViewTextBoxColumn";
             // 
             // bidDataGridViewTextBoxColumn
             // 
             this.bidDataGridViewTextBoxColumn.DataPropertyName = "Bid";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
-            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Red;
+            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.bidDataGridViewTextBoxColumn.HeaderText = "Bid";
             this.bidDataGridViewTextBoxColumn.Name = "bidDataGridViewTextBoxColumn";
             this.bidDataGridViewTextBoxColumn.ReadOnly = true;
@@ -365,8 +397,8 @@
             // askDataGridViewTextBoxColumn
             // 
             this.askDataGridViewTextBoxColumn.DataPropertyName = "Ask";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.askDataGridViewTextBoxColumn.HeaderText = "Ask";
             this.askDataGridViewTextBoxColumn.Name = "askDataGridViewTextBoxColumn";
             this.askDataGridViewTextBoxColumn.ReadOnly = true;
@@ -376,6 +408,7 @@
             this.entryLevelDataGridViewTextBoxColumn.DataPropertyName = "EntryLevel";
             this.entryLevelDataGridViewTextBoxColumn.HeaderText = "EntryLevel";
             this.entryLevelDataGridViewTextBoxColumn.Name = "entryLevelDataGridViewTextBoxColumn";
+            this.entryLevelDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // percentFromEntryDataGridViewTextBoxColumn
             // 
@@ -387,6 +420,8 @@
             // stopDistanceDataGridViewTextBoxColumn
             // 
             this.stopDistanceDataGridViewTextBoxColumn.DataPropertyName = "StopDistance";
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.stopDistanceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.stopDistanceDataGridViewTextBoxColumn.HeaderText = "StopDistance";
             this.stopDistanceDataGridViewTextBoxColumn.Name = "stopDistanceDataGridViewTextBoxColumn";
             // 
@@ -404,11 +439,198 @@
             this.spreadPercentOfRiskDataGridViewTextBoxColumn.Name = "spreadPercentOfRiskDataGridViewTextBoxColumn";
             this.spreadPercentOfRiskDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // deleteGridViewColumn
+            // 
+            this.deleteGridViewColumn.HeaderText = "Delete";
+            this.deleteGridViewColumn.Name = "deleteGridViewColumn";
+            this.deleteGridViewColumn.Text = "Delete";
+            // 
+            // databaseOrdersBindingSource
+            // 
+            this.databaseOrdersBindingSource.ControlToInvokeOn = this;
+            this.databaseOrdersBindingSource.DataMember = "DatabaseOrders";
+            this.databaseOrdersBindingSource.DataSource = this.DataContext;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(35, 277);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(238, 32);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Database Orders:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(35, 712);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(256, 32);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "IG Working Orders:";
+            // 
+            // _IgWorkingOrdersDataView
+            // 
+            this._IgWorkingOrdersDataView.AllowUserToAddRows = false;
+            this._IgWorkingOrdersDataView.AllowUserToDeleteRows = false;
+            this._IgWorkingOrdersDataView.AllowUserToResizeRows = false;
+            this._IgWorkingOrdersDataView.AutoGenerateColumns = false;
+            this._IgWorkingOrdersDataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this._IgWorkingOrdersDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this._IgWorkingOrdersDataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dealIdDataGridViewTextBoxColumn,
+            this.directionDataGridViewTextBoxColumn,
+            this.epicDataGridViewTextBoxColumn,
+            this.orderSizeDataGridViewTextBoxColumn,
+            this.orderLevelDataGridViewTextBoxColumn,
+            this.timeInForceDataGridViewTextBoxColumn,
+            this.goodTillDateDataGridViewTextBoxColumn,
+            this.createdDateDataGridViewTextBoxColumn,
+            this.guaranteedStopDataGridViewCheckBoxColumn,
+            this.orderTypeDataGridViewTextBoxColumn,
+            this.stopDistanceDataGridViewTextBoxColumn1,
+            this.limitDistanceDataGridViewTextBoxColumn,
+            this.currencyCodeDataGridViewTextBoxColumn,
+            this.instrumentNameDataGridViewTextBoxColumn,
+            this.expiryDataGridViewTextBoxColumn1,
+            this.marketStatusDataGridViewTextBoxColumn});
+            this._IgWorkingOrdersDataView.DataSource = this.igWorkingOrdersBindingSource;
+            this._IgWorkingOrdersDataView.Location = new System.Drawing.Point(41, 761);
+            this._IgWorkingOrdersDataView.Name = "_IgWorkingOrdersDataView";
+            this._IgWorkingOrdersDataView.RowTemplate.Height = 40;
+            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2570, 352);
+            this._IgWorkingOrdersDataView.TabIndex = 22;
+            // 
+            // dealIdDataGridViewTextBoxColumn
+            // 
+            this.dealIdDataGridViewTextBoxColumn.DataPropertyName = "DealId";
+            this.dealIdDataGridViewTextBoxColumn.HeaderText = "DealId";
+            this.dealIdDataGridViewTextBoxColumn.Name = "dealIdDataGridViewTextBoxColumn";
+            // 
+            // directionDataGridViewTextBoxColumn
+            // 
+            this.directionDataGridViewTextBoxColumn.DataPropertyName = "Direction";
+            this.directionDataGridViewTextBoxColumn.HeaderText = "Direction";
+            this.directionDataGridViewTextBoxColumn.Name = "directionDataGridViewTextBoxColumn";
+            // 
+            // epicDataGridViewTextBoxColumn
+            // 
+            this.epicDataGridViewTextBoxColumn.DataPropertyName = "Epic";
+            this.epicDataGridViewTextBoxColumn.HeaderText = "Epic";
+            this.epicDataGridViewTextBoxColumn.Name = "epicDataGridViewTextBoxColumn";
+            // 
+            // orderSizeDataGridViewTextBoxColumn
+            // 
+            this.orderSizeDataGridViewTextBoxColumn.DataPropertyName = "OrderSize";
+            this.orderSizeDataGridViewTextBoxColumn.HeaderText = "OrderSize";
+            this.orderSizeDataGridViewTextBoxColumn.Name = "orderSizeDataGridViewTextBoxColumn";
+            // 
+            // orderLevelDataGridViewTextBoxColumn
+            // 
+            this.orderLevelDataGridViewTextBoxColumn.DataPropertyName = "OrderLevel";
+            this.orderLevelDataGridViewTextBoxColumn.HeaderText = "OrderLevel";
+            this.orderLevelDataGridViewTextBoxColumn.Name = "orderLevelDataGridViewTextBoxColumn";
+            // 
+            // timeInForceDataGridViewTextBoxColumn
+            // 
+            this.timeInForceDataGridViewTextBoxColumn.DataPropertyName = "TimeInForce";
+            this.timeInForceDataGridViewTextBoxColumn.HeaderText = "TimeInForce";
+            this.timeInForceDataGridViewTextBoxColumn.Name = "timeInForceDataGridViewTextBoxColumn";
+            // 
+            // goodTillDateDataGridViewTextBoxColumn
+            // 
+            this.goodTillDateDataGridViewTextBoxColumn.DataPropertyName = "GoodTillDate";
+            this.goodTillDateDataGridViewTextBoxColumn.HeaderText = "GoodTillDate";
+            this.goodTillDateDataGridViewTextBoxColumn.Name = "goodTillDateDataGridViewTextBoxColumn";
+            // 
+            // createdDateDataGridViewTextBoxColumn
+            // 
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            // 
+            // guaranteedStopDataGridViewCheckBoxColumn
+            // 
+            this.guaranteedStopDataGridViewCheckBoxColumn.DataPropertyName = "GuaranteedStop";
+            this.guaranteedStopDataGridViewCheckBoxColumn.HeaderText = "GuaranteedStop";
+            this.guaranteedStopDataGridViewCheckBoxColumn.Name = "guaranteedStopDataGridViewCheckBoxColumn";
+            // 
+            // orderTypeDataGridViewTextBoxColumn
+            // 
+            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            // 
+            // stopDistanceDataGridViewTextBoxColumn1
+            // 
+            this.stopDistanceDataGridViewTextBoxColumn1.DataPropertyName = "StopDistance";
+            this.stopDistanceDataGridViewTextBoxColumn1.HeaderText = "StopDistance";
+            this.stopDistanceDataGridViewTextBoxColumn1.Name = "stopDistanceDataGridViewTextBoxColumn1";
+            // 
+            // limitDistanceDataGridViewTextBoxColumn
+            // 
+            this.limitDistanceDataGridViewTextBoxColumn.DataPropertyName = "LimitDistance";
+            this.limitDistanceDataGridViewTextBoxColumn.HeaderText = "LimitDistance";
+            this.limitDistanceDataGridViewTextBoxColumn.Name = "limitDistanceDataGridViewTextBoxColumn";
+            // 
+            // currencyCodeDataGridViewTextBoxColumn
+            // 
+            this.currencyCodeDataGridViewTextBoxColumn.DataPropertyName = "CurrencyCode";
+            this.currencyCodeDataGridViewTextBoxColumn.HeaderText = "CurrencyCode";
+            this.currencyCodeDataGridViewTextBoxColumn.Name = "currencyCodeDataGridViewTextBoxColumn";
+            // 
+            // instrumentNameDataGridViewTextBoxColumn
+            // 
+            this.instrumentNameDataGridViewTextBoxColumn.DataPropertyName = "InstrumentName";
+            this.instrumentNameDataGridViewTextBoxColumn.HeaderText = "InstrumentName";
+            this.instrumentNameDataGridViewTextBoxColumn.Name = "instrumentNameDataGridViewTextBoxColumn";
+            // 
+            // expiryDataGridViewTextBoxColumn1
+            // 
+            this.expiryDataGridViewTextBoxColumn1.DataPropertyName = "Expiry";
+            this.expiryDataGridViewTextBoxColumn1.HeaderText = "Expiry";
+            this.expiryDataGridViewTextBoxColumn1.Name = "expiryDataGridViewTextBoxColumn1";
+            // 
+            // marketStatusDataGridViewTextBoxColumn
+            // 
+            this.marketStatusDataGridViewTextBoxColumn.DataPropertyName = "MarketStatus";
+            this.marketStatusDataGridViewTextBoxColumn.HeaderText = "MarketStatus";
+            this.marketStatusDataGridViewTextBoxColumn.Name = "marketStatusDataGridViewTextBoxColumn";
+            // 
+            // igWorkingOrdersBindingSource
+            // 
+            this.igWorkingOrdersBindingSource.ControlToInvokeOn = this;
+            this.igWorkingOrdersBindingSource.DataMember = "IgWorkingOrders";
+            this.igWorkingOrdersBindingSource.DataSource = this.DataContext;
+            // 
+            // _LogMessageLabel
+            // 
+            this._LogMessageLabel.AutoSize = true;
+            this._LogMessageLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LogMessage", true));
+            this._LogMessageLabel.Location = new System.Drawing.Point(638, 50);
+            this._LogMessageLabel.Name = "_LogMessageLabel";
+            this._LogMessageLabel.Size = new System.Drawing.Size(0, 32);
+            this._LogMessageLabel.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LoggedIn", true));
+            this.label13.Location = new System.Drawing.Point(1717, 138);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(93, 32);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "label2";
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2640, 1197);
+            this.ClientSize = new System.Drawing.Size(2637, 1154);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this._LogMessageLabel);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this._IgWorkingOrdersDataView);
             this.Controls.Add(this.label11);
             this.Controls.Add(this._DatabaseOrdersGridView);
             this.Controls.Add(this.label8);
@@ -433,9 +655,13 @@
             this.Controls.Add(this._LoginButton);
             this.Name = "MainWindowView";
             this.Text = "MainWindowView";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindowView_FormClosed);
+            this.Load += new System.EventHandler(this.MainWindowView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._IgWorkingOrdersDataView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.igWorkingOrdersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,6 +694,27 @@
         private System.Windows.Forms.DataGridView _DatabaseOrdersGridView;
         private ThreadSafeBindingSource databaseOrdersBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn uniqueIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridView _IgWorkingOrdersDataView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dealIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn directionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn epicDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderSizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeInForceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn goodTillDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn guaranteedStopDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stopDistanceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn limitDistanceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn currencyCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn instrumentNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expiryDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marketStatusDataGridViewTextBoxColumn;
+        private ThreadSafeBindingSource igWorkingOrdersBindingSource;
+        private System.Windows.Forms.Label _LogMessageLabel;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tickerDataGridViewTextBoxColumn;
@@ -482,5 +729,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn stopDistanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn positionSizeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn spreadPercentOfRiskDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteGridViewColumn;
     }
 }

@@ -13,6 +13,8 @@ namespace IGTradeManager.UI.Views.MainWindow
         void Login(string apiKey, string username, string password);
         void Logout();
 
+        bool LoggedIn { get; }
+        string LogMessage { get; }
         string AccountId { get; }
         string AccountName { get; }
         decimal? Available { get;  }
@@ -21,5 +23,6 @@ namespace IGTradeManager.UI.Views.MainWindow
         decimal? ProfitAndLoss { get; }
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
+        BindingList<IgWorkingOrder> IgWorkingOrders { get; }
     }
 }

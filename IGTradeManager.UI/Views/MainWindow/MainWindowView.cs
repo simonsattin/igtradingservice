@@ -43,5 +43,25 @@ namespace IGTradeManager.UI.Views.MainWindow
         {
             
         }
+
+        private void MainWindowView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainWindowView_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _ViewModel.Logout();
+        }
+
+        private void _DatabaseOrdersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void _DatabaseOrdersGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
     }
 }

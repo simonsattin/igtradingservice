@@ -25,12 +25,17 @@ namespace IGTradeManager.UI.Views.MainWindow
             _AccountService = accountService;
 
             _DataCache.PropertyChanged += _DataCache_PropertyChanged;
-        }        
+            _DataCache.DatabaseOrders.ListChanged += DatabaseOrders_ListChanged;
+        }
+
+        
 
         public void Login(string apiKey, string username, string password)
         {
+            LogMessage = "Resetting data cache...";
             _DataCache.Reset();
 
+            LogMessage = "Getting database orders...";
             //fill database orders
             var databaseOrders = _DataAccess.GetOrders();
             foreach (var item in databaseOrders)
@@ -38,15 +43,26 @@ namespace IGTradeManager.UI.Views.MainWindow
                 _DataCache.DatabaseOrders.Add(item);
             }
 
+            LogMessage = "Logging into Ig Account Service...";
             //login to IG
-            _AccountService.Login(apiKey, username, password);            
+            _AccountService.Login(apiKey, username, password);
+
+            LogMessage = "Filling Ig Working Orders...";
+            //fill IG working orders
+            _AccountService.LoadWorkingOrders();
+
+            LoggedIn = true;
+
+            LogMessage = string.Empty;
         }
 
         public void Logout()
         {
             _DataCache.Reset();
 
-            _AccountService.Logout();            
+            _AccountService.Logout();
+
+            LoggedIn = false;
         }
 
         public BindingList<DatabaseOrder> DatabaseOrders
@@ -54,6 +70,42 @@ namespace IGTradeManager.UI.Views.MainWindow
             get
             {
                 return _DataCache.DatabaseOrders;
+            }
+        }
+
+        public BindingList<IgWorkingOrder> IgWorkingOrders
+        {
+            get
+            {
+                return _DataCache.IgWorkingOrders;
+            }
+        }
+
+        private bool _LoggedIn;
+        public bool LoggedIn
+        {
+            get { return _LoggedIn; }
+            set
+            {
+                if (_LoggedIn != value)
+                {
+                    _LoggedIn = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _LogMessage;
+        public string LogMessage
+        {
+            get { return _LogMessage; }
+            set
+            {
+                if (_LogMessage != value)
+                {
+                    _LogMessage = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -172,6 +224,19 @@ namespace IGTradeManager.UI.Views.MainWindow
             {
                 Deposit = _DataCache.Deposit;
             }
+        }
+
+        private void DatabaseOrders_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                var changedDatabaseOrder = _DataCache.DatabaseOrders[e.NewIndex];
+                var rowsUpdated = _DataAccess.SaveDatabaseOrder(changedDatabaseOrder);
+                if (rowsUpdated == 1)
+                {
+                    LogMessage = string.Format("Updated order for '{0}' in database", changedDatabaseOrder.Ticker);
+                }
+            }           
         }
     }
 }
