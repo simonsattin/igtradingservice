@@ -26,17 +26,22 @@ namespace IGTradeManager.UI.Views.MainWindow
         {
             _ViewModel = GetController<IMainWindowViewModel>();
 
-            DataContext.DataSource = _ViewModel;
+            DataContext.DataSource = _ViewModel;           
         }
 
         private void _LoginButton_Click(object sender, EventArgs e)
         {
-            _ViewModel.Login();
+            _ViewModel.Login(_ApiKeyTextbox.Text,_UsernameTextbox.Text,_PasswordTextbox.Text);
         }
 
         private void _LogoutButton_Click(object sender, EventArgs e)
         {
             _ViewModel.Logout();
+        }
+
+        private void _DatabaseOrdersGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

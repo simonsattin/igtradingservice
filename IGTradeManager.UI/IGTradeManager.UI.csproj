@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -43,6 +47,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -68,9 +73,13 @@
       <DependentUpon>BaseUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ContainerProvider.cs" />
-    <Compile Include="Data\DataAccess\IOrdersDataAccess.cs" />
-    <Compile Include="Data\DataAccess\OrdersDataAccess.cs" />
+    <Compile Include="Data\DataAccess\DataAccess.cs" />
+    <Compile Include="Data\DataAccess\IDataAccess.cs" />
+    <Compile Include="Data\DataCache.cs" />
+    <Compile Include="Data\IDataCache.cs" />
     <Compile Include="IController.cs" />
+    <Compile Include="DependencyObject.cs" />
+    <Compile Include="Model\DatabaseOrder.cs" />
     <Compile Include="Modules\AccountService.cs" />
     <Compile Include="Modules\IAccountService.cs" />
     <Compile Include="Program.cs" />
@@ -87,6 +96,9 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow\MainWindowViewModel.cs" />
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,9 +127,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\IGPublicPcl\IGPublicPcl.csproj">
       <Project>{7f27be84-3b2a-4616-bba1-5b2175a27716}</Project>

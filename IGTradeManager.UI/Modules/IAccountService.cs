@@ -8,7 +8,7 @@ namespace IGTradeManager.UI.Modules
 {
     public interface IAccountService
     {
-        bool Login();
+        bool Login(string apiKey, string username, string password);
         void Logout();
     }
 }

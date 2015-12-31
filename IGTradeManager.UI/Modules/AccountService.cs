@@ -1,4 +1,5 @@
 ﻿using IGPublicPcl;
+using IGTradeManager.UI.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,56 +11,48 @@ namespace IGTradeManager.UI.Modules
     public class AccountService : IAccountService
     {
         private readonly IGStreamingApiClient _StreamClient;
+        private readonly IgRestApiClient _IGApi;
+        private readonly IDataCache _DataCache;
 
-        public AccountService()
+        public AccountService(IDataCache dataCache)
         {
+            _IGApi = new IgRestApiClient();
             _StreamClient = new IGStreamingApiClient();
+            _DataCache = dataCache;
         }
 
-        public bool Login()
+        public bool Login(string apiKey, string username, string password)
         {
-            const string API_KEY = "fd3e7ec86cb96ad3d1e4aa13302ca9b14f337547";
-            const string URL = "https://api.ig.com/gateway";
-            const string USERNAME = "SHN22";
-            const string PASSWORD = "darcyB#o?23";
-
-            IgRestApiClient igRestApiClient = new IgRestApiClient();
-
             // use v2 secure login...			
             var ar = new dto.colibri.endpoint.auth.v2.AuthenticationRequest();
-            ar.identifier = USERNAME;
-            ar.password = PASSWORD;
+            ar.identifier = username;
+            ar.password = password;
 
-            var response = igRestApiClient.SecureAuthenticate(ar, API_KEY);
-            var result = response.Result;
+            var response = _IGApi.SecureAuthenticate(ar, apiKey);
+            var result = response.Result;            
 
-            ConversationContext conversationContext = null;
+            if (result == null || result.Response == null || result.Response.accounts.Count == 0)
+                return false;
 
-            if (result && (result.Response != null) && (result.Response.accounts.Count > 0))
-            {
-                var accountId = result.Response.accounts[0].accountId;
+            //get account details
+            _DataCache.AccountId = result.Response.accounts[0].accountId;
+            _DataCache.AccountName = result.Response.accounts[0].accountName;
+            _DataCache.Balance = result.Response.accountInfo.balance;
+            _DataCache.ProfitAndLoss = result.Response.accountInfo.profitLoss;
+            _DataCache.Deposit = result.Response.accountInfo.deposit;
+            _DataCache.Available = result.Response.accountInfo.available;
 
-                Console.WriteLine(string.Format("Logged in: {0} | {1} | {2}",
-                    result.Response.accounts[0].accountId,
-                    result.Response.accounts[0].accountName,
-                    result.Response.accountInfo.balance));
-
-                conversationContext = igRestApiClient.GetConversationContext();                
-
-                var connectedToLightStream = _StreamClient.Connect(response.Result.Response.currentAccountId,
-                        conversationContext.cst,
-                        conversationContext.xSecurityToken, conversationContext.apiKey,
-                        response.Result.Response.lightstreamerEndpoint);
-            }
+            //connect to lightstream
+            var conversationContext = _IGApi.GetConversationContext();
 
             return true;
         }
 
         public void Logout()
         {
+            _IGApi.logout();
+
             _StreamClient.disconnect();
         }
-
-
     }
 }

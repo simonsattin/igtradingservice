@@ -1,7 +1,11 @@
 ﻿using IGPublicPcl;
+using IGTradeManager.UI.Data;
+using IGTradeManager.UI.Data.DataAccess;
+using IGTradeManager.UI.Model;
 using IGTradeManager.UI.Modules;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,48 +13,48 @@ using System.Threading.Tasks;
 namespace IGTradeManager.UI.Views.MainWindow
 {
     public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
-    {
-        private readonly IGStreamingApiClient _StreamClient;
-        private readonly IgRestApiClient _IGApi;
+    {        
+        private readonly IDataAccess _DataAccess;
+        private readonly IDataCache _DataCache;
+        private readonly IAccountService _AccountService;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDataAccess dataAccess, IDataCache dataCache, IAccountService accountService)
         {
-            _StreamClient = new IGStreamingApiClient();
-            _IGApi = new IgRestApiClient();
-        }
+            _DataAccess = dataAccess;
+            _DataCache = dataCache;
+            _AccountService = accountService;
 
-        public void Login()
+            _DataCache.PropertyChanged += _DataCache_PropertyChanged;
+        }        
+
+        public void Login(string apiKey, string username, string password)
         {
-            const string API_KEY = "fd3e7ec86cb96ad3d1e4aa13302ca9b14f337547";
-            const string URL = "https://api.ig.com/gateway";
-            const string USERNAME = "SHN22";
-            const string PASSWORD = "darcyB#o?23";         
+            _DataCache.Reset();
 
-            // use v2 secure login...			
-            var ar = new dto.colibri.endpoint.auth.v2.AuthenticationRequest();
-            ar.identifier = USERNAME;
-            ar.password = PASSWORD;
-
-            var response = _IGApi.SecureAuthenticate(ar, API_KEY);
-            var result = response.Result;
-
-            ConversationContext conversationContext = null;
-
-            if (result && (result.Response != null) && (result.Response.accounts.Count > 0))
+            //fill database orders
+            var databaseOrders = _DataAccess.GetOrders();
+            foreach (var item in databaseOrders)
             {
-                var accountId = result.Response.accounts[0].accountId;
-
-                AccountId = accountId;
-                AccountName = result.Response.accounts[0].accountName;
-                Balance = result.Response.accountInfo.balance;        
-
-                conversationContext = _IGApi.GetConversationContext();
+                _DataCache.DatabaseOrders.Add(item);
             }
+
+            //login to IG
+            _AccountService.Login(apiKey, username, password);            
         }
 
         public void Logout()
         {
-            _IGApi.logout();
+            _DataCache.Reset();
+
+            _AccountService.Logout();            
+        }
+
+        public BindingList<DatabaseOrder> DatabaseOrders
+        {
+            get
+            {
+                return _DataCache.DatabaseOrders;
+            }
         }
 
         private string _AccountId;
@@ -92,6 +96,81 @@ namespace IGTradeManager.UI.Views.MainWindow
                     _Balance = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        private decimal? _Deposit;
+        public decimal? Deposit
+        {
+            get { return _Deposit; }
+            set
+            {
+                if (_Deposit != value)
+                {
+                    _Deposit = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal? _Available;
+        public decimal? Available
+        {
+            get { return _Available; }
+            set
+            {
+                if (_Available != value)
+                {
+                    _Available = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal? _ProfitAndLoss;
+        public decimal? ProfitAndLoss
+        {
+            get { return _ProfitAndLoss; }
+            set
+            {
+                if (_ProfitAndLoss != value)
+                {
+                    _ProfitAndLoss = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void _DataCache_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "AccountId")
+            {
+                AccountId = _DataCache.AccountId;
+            }
+
+            if (e.PropertyName == "AccountName")
+            {
+                AccountName = _DataCache.AccountName;
+            }
+
+            if (e.PropertyName == "Balance")
+            {
+                Balance = _DataCache.Balance;
+            }
+
+            if (e.PropertyName == "Available")
+            {
+                Available = _DataCache.Available;
+            }
+
+            if (e.PropertyName == "ProfitAndLoss")
+            {
+                ProfitAndLoss = _DataCache.ProfitAndLoss;
+            }
+
+            if (e.PropertyName == "Deposit")
+            {
+                Deposit = _DataCache.Deposit;
             }
         }
     }

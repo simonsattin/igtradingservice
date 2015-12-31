@@ -1,4 +1,6 @@
-﻿using IGTradeManager.UI.Modules;
+﻿using IGTradeManager.UI.Data;
+using IGTradeManager.UI.Data.DataAccess;
+using IGTradeManager.UI.Modules;
 using IGTradeManager.UI.Views.MainWindow;
 using SimpleInjector;
 using System;
@@ -18,6 +20,9 @@ namespace IGTradeManager.UI
 
         public static void SetupContainer()
         {
+            Container.RegisterSingleton<IDataCache, DataCache>();
+            Container.RegisterSingleton<IDataAccess, DataAccess>();
+
             Container.RegisterSingleton<IAccountService, AccountService>();
             Container.RegisterSingleton<IMainWindowViewModel, MainWindowViewModel>();
             
