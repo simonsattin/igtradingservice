@@ -97,6 +97,14 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow\MainWindowViewModel.cs" />
+    <Compile Include="Views\NewDatabaseOrder\INewDatabaseOrderViewModel.cs" />
+    <Compile Include="Views\NewDatabaseOrder\NewDatabaseOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NewDatabaseOrder\NewDatabaseOrderView.Designer.cs">
+      <DependentUpon>NewDatabaseOrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewDatabaseOrder\NewDatabaseOrderViewModel.cs" />
     <EmbeddedResource Include="BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,8 +121,12 @@
     <EmbeddedResource Include="Views\MainWindow\MainWindowView.resx">
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewDatabaseOrder\NewDatabaseOrderView.resx">
+      <DependentUpon>NewDatabaseOrderView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IGTradeManager.UI.Views.MainWindow.IMainWindowViewModel.datasource" />
+    <None Include="Properties\DataSources\IGTradeManager.UI.Views.NewDatabaseOrder.INewDatabaseOrderViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

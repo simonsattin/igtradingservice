@@ -19,7 +19,7 @@ namespace IGTradeManager.UI.Data.DataAccess
             _ConnectionString = ConfigurationManager.ConnectionStrings["AmazonConnection"].ConnectionString;
         }
 
-        public List<DatabaseOrder> GetOrders()
+        public List<DatabaseOrder> GetDatabaseOrder()
         {
             using (var connection = new SqlConnection(_ConnectionString))
             {
@@ -47,13 +47,33 @@ WHERE Id = @Id
             }
         }
 
-        public int DeleteDatabaseOrder(int id)
+        public int InsertDatabaseOrder(DatabaseOrder order)
+        {
+            using (var connection = new SqlConnection(_ConnectionString))
+            {
+                string sql = @"
+INSERT INTO [dbo].[Order]
+           ([Name]
+           ,[Ticker]
+           ,[IgInstrument]
+           ,[Expiry]
+           ,[NextEarnings]
+           ,[BreakoutLevel]
+           ,[StopDistance])
+VALUES (@Name, @Ticker, @IgInstrument, @Expiry, @NextEarnings, @BreakoutLevel, @StopDistance)
+";
+
+                return connection.Execute(sql, order);
+            }
+        }
+
+        public int DeleteDatabaseOrder(DatabaseOrder order)
         {
             using (var connection = new SqlConnection(_ConnectionString))
             {
                 string sql = @"DELETE FROM dbo.[Order] WHERE Id = @Id";
 
-                return connection.Execute(sql, id);
+                return connection.Execute(sql, order);
             }
         }
     }

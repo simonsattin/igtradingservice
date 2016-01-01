@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this._LoginButton = new System.Windows.Forms.Button();
             this.DataContext = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
             this._LogoutButton = new System.Windows.Forms.Button();
@@ -98,6 +98,7 @@
             this.igWorkingOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
             this._LogMessageLabel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this._AddOrderButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).BeginInit();
@@ -107,6 +108,7 @@
             // 
             // _LoginButton
             // 
+            this._LoginButton.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.DataContext, "LoggedOut", true));
             this._LoginButton.Location = new System.Drawing.Point(41, 35);
             this._LoginButton.Name = "_LoginButton";
             this._LoginButton.Size = new System.Drawing.Size(253, 60);
@@ -122,6 +124,7 @@
             // 
             // _LogoutButton
             // 
+            this._LogoutButton.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.DataContext, "LoggedIn", true));
             this._LogoutButton.Location = new System.Drawing.Point(344, 35);
             this._LogoutButton.Name = "_LogoutButton";
             this._LogoutButton.Size = new System.Drawing.Size(253, 60);
@@ -322,10 +325,10 @@
             this._DatabaseOrdersGridView.DataSource = this.databaseOrdersBindingSource;
             this._DatabaseOrdersGridView.Location = new System.Drawing.Point(41, 321);
             this._DatabaseOrdersGridView.Name = "_DatabaseOrdersGridView";
-            this._DatabaseOrdersGridView.RowTemplate.Height = 40;
-            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2570, 358);
+            this._DatabaseOrdersGridView.RowHeadersVisible = false;
+            this._DatabaseOrdersGridView.RowTemplate.Height = 20;
+            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2570, 399);
             this._DatabaseOrdersGridView.TabIndex = 20;
-            this._DatabaseOrdersGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellClick);
             this._DatabaseOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellContentClick);
             this._DatabaseOrdersGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellValueChanged);
             // 
@@ -340,56 +343,56 @@
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // tickerDataGridViewTextBoxColumn
             // 
             this.tickerDataGridViewTextBoxColumn.DataPropertyName = "Ticker";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tickerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tickerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             this.tickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
             this.tickerDataGridViewTextBoxColumn.Name = "tickerDataGridViewTextBoxColumn";
             // 
             // igInstrumentDataGridViewTextBoxColumn
             // 
             this.igInstrumentDataGridViewTextBoxColumn.DataPropertyName = "IgInstrument";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.igInstrumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.igInstrumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.igInstrumentDataGridViewTextBoxColumn.HeaderText = "IgInstrument";
             this.igInstrumentDataGridViewTextBoxColumn.Name = "igInstrumentDataGridViewTextBoxColumn";
             // 
             // expiryDataGridViewTextBoxColumn
             // 
             this.expiryDataGridViewTextBoxColumn.DataPropertyName = "Expiry";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.expiryDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.expiryDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
             this.expiryDataGridViewTextBoxColumn.HeaderText = "Expiry";
             this.expiryDataGridViewTextBoxColumn.Name = "expiryDataGridViewTextBoxColumn";
             // 
             // nextEarningsDataGridViewTextBoxColumn
             // 
             this.nextEarningsDataGridViewTextBoxColumn.DataPropertyName = "NextEarnings";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.nextEarningsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nextEarningsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.nextEarningsDataGridViewTextBoxColumn.HeaderText = "NextEarnings";
             this.nextEarningsDataGridViewTextBoxColumn.Name = "nextEarningsDataGridViewTextBoxColumn";
             // 
             // breakoutLevelDataGridViewTextBoxColumn
             // 
             this.breakoutLevelDataGridViewTextBoxColumn.DataPropertyName = "BreakoutLevel";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.breakoutLevelDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.breakoutLevelDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.breakoutLevelDataGridViewTextBoxColumn.HeaderText = "BreakoutLevel";
             this.breakoutLevelDataGridViewTextBoxColumn.Name = "breakoutLevelDataGridViewTextBoxColumn";
             // 
             // bidDataGridViewTextBoxColumn
             // 
             this.bidDataGridViewTextBoxColumn.DataPropertyName = "Bid";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Red;
-            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Red;
+            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
             this.bidDataGridViewTextBoxColumn.HeaderText = "Bid";
             this.bidDataGridViewTextBoxColumn.Name = "bidDataGridViewTextBoxColumn";
             this.bidDataGridViewTextBoxColumn.ReadOnly = true;
@@ -397,8 +400,8 @@
             // askDataGridViewTextBoxColumn
             // 
             this.askDataGridViewTextBoxColumn.DataPropertyName = "Ask";
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.askDataGridViewTextBoxColumn.HeaderText = "Ask";
             this.askDataGridViewTextBoxColumn.Name = "askDataGridViewTextBoxColumn";
             this.askDataGridViewTextBoxColumn.ReadOnly = true;
@@ -420,8 +423,8 @@
             // stopDistanceDataGridViewTextBoxColumn
             // 
             this.stopDistanceDataGridViewTextBoxColumn.DataPropertyName = "StopDistance";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.stopDistanceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.stopDistanceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle18;
             this.stopDistanceDataGridViewTextBoxColumn.HeaderText = "StopDistance";
             this.stopDistanceDataGridViewTextBoxColumn.Name = "stopDistanceDataGridViewTextBoxColumn";
             // 
@@ -444,6 +447,7 @@
             this.deleteGridViewColumn.HeaderText = "Delete";
             this.deleteGridViewColumn.Name = "deleteGridViewColumn";
             this.deleteGridViewColumn.Text = "Delete";
+            this.deleteGridViewColumn.UseColumnTextForButtonValue = true;
             // 
             // databaseOrdersBindingSource
             // 
@@ -463,7 +467,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(35, 712);
+            this.label12.Location = new System.Drawing.Point(38, 802);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(256, 32);
             this.label12.TabIndex = 23;
@@ -495,10 +499,11 @@
             this.expiryDataGridViewTextBoxColumn1,
             this.marketStatusDataGridViewTextBoxColumn});
             this._IgWorkingOrdersDataView.DataSource = this.igWorkingOrdersBindingSource;
-            this._IgWorkingOrdersDataView.Location = new System.Drawing.Point(41, 761);
+            this._IgWorkingOrdersDataView.Location = new System.Drawing.Point(41, 837);
             this._IgWorkingOrdersDataView.Name = "_IgWorkingOrdersDataView";
+            this._IgWorkingOrdersDataView.RowHeadersVisible = false;
             this._IgWorkingOrdersDataView.RowTemplate.Height = 40;
-            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2570, 352);
+            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2570, 304);
             this._IgWorkingOrdersDataView.TabIndex = 22;
             // 
             // dealIdDataGridViewTextBoxColumn
@@ -622,11 +627,23 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "label2";
             // 
+            // _AddOrderButton
+            // 
+            this._AddOrderButton.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.DataContext, "LoggedIn", true));
+            this._AddOrderButton.Location = new System.Drawing.Point(41, 726);
+            this._AddOrderButton.Name = "_AddOrderButton";
+            this._AddOrderButton.Size = new System.Drawing.Size(181, 55);
+            this._AddOrderButton.TabIndex = 26;
+            this._AddOrderButton.Text = "Add Order";
+            this._AddOrderButton.UseVisualStyleBackColor = true;
+            this._AddOrderButton.Click += new System.EventHandler(this._AddOrderButton_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2637, 1154);
+            this.ClientSize = new System.Drawing.Size(2637, 1194);
+            this.Controls.Add(this._AddOrderButton);
             this.Controls.Add(this.label13);
             this.Controls.Add(this._LogMessageLabel);
             this.Controls.Add(this.label12);
@@ -656,7 +673,6 @@
             this.Name = "MainWindowView";
             this.Text = "MainWindowView";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainWindowView_FormClosed);
-            this.Load += new System.EventHandler(this.MainWindowView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).EndInit();
@@ -715,6 +731,7 @@
         private ThreadSafeBindingSource igWorkingOrdersBindingSource;
         private System.Windows.Forms.Label _LogMessageLabel;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button _AddOrderButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tickerDataGridViewTextBoxColumn;

@@ -12,8 +12,11 @@ namespace IGTradeManager.UI.Views.MainWindow
     {
         void Login(string apiKey, string username, string password);
         void Logout();
+        void DeleteDatabaseOrder(DatabaseOrder order);
+        void UpdateDatabaseOrder(DatabaseOrder order);
 
         bool LoggedIn { get; }
+        bool LoggedOut { get; }
         string LogMessage { get; }
         string AccountId { get; }
         string AccountName { get; }

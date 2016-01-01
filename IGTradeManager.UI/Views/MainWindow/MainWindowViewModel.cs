@@ -26,10 +26,10 @@ namespace IGTradeManager.UI.Views.MainWindow
 
             _DataCache.PropertyChanged += _DataCache_PropertyChanged;
             _DataCache.DatabaseOrders.ListChanged += DatabaseOrders_ListChanged;
+
+            LoggedOut = true;
         }
-
         
-
         public void Login(string apiKey, string username, string password)
         {
             LogMessage = "Resetting data cache...";
@@ -37,7 +37,7 @@ namespace IGTradeManager.UI.Views.MainWindow
 
             LogMessage = "Getting database orders...";
             //fill database orders
-            var databaseOrders = _DataAccess.GetOrders();
+            var databaseOrders = _DataAccess.GetDatabaseOrder();
             foreach (var item in databaseOrders)
             {
                 _DataCache.DatabaseOrders.Add(item);
@@ -52,6 +52,7 @@ namespace IGTradeManager.UI.Views.MainWindow
             _AccountService.LoadWorkingOrders();
 
             LoggedIn = true;
+            LoggedOut = false;
 
             LogMessage = string.Empty;
         }
@@ -63,6 +64,33 @@ namespace IGTradeManager.UI.Views.MainWindow
             _AccountService.Logout();
 
             LoggedIn = false;
+            LoggedOut = true;
+        }
+
+        public void DeleteDatabaseOrder(DatabaseOrder order)
+        {
+            _DataAccess.DeleteDatabaseOrder(order);
+
+            //reload orders
+            _DataCache.DatabaseOrders.Clear();
+            var databaseOrders = _DataAccess.GetDatabaseOrder();
+            foreach (var item in databaseOrders)
+            {
+                _DataCache.DatabaseOrders.Add(item);
+            }
+        }
+
+        public void UpdateDatabaseOrder(DatabaseOrder order)
+        {
+            _DataAccess.SaveDatabaseOrder(order);
+
+            //reload orders
+            _DataCache.DatabaseOrders.Clear();
+            var databaseOrders = _DataAccess.GetDatabaseOrder();
+            foreach (var item in databaseOrders)
+            {
+                _DataCache.DatabaseOrders.Add(item);
+            }
         }
 
         public BindingList<DatabaseOrder> DatabaseOrders
@@ -90,6 +118,20 @@ namespace IGTradeManager.UI.Views.MainWindow
                 if (_LoggedIn != value)
                 {
                     _LoggedIn = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _LoggedOut;
+        public bool LoggedOut
+        {
+            get { return _LoggedOut; }
+            set
+            {
+                if (_LoggedOut != value)
+                {
+                    _LoggedOut = value;
                     OnPropertyChanged();
                 }
             }
