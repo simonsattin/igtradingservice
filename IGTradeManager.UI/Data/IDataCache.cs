@@ -12,6 +12,9 @@ namespace IGTradeManager.UI.Data
     {
         void Reset();
 
+        decimal SpreadToApply { get; set; }
+        decimal RiskPerTrade { get; set; }
+
         BindingList<DatabaseOrder> DatabaseOrders { get; }
         BindingList<IgWorkingOrder> IgWorkingOrders { get; }
 

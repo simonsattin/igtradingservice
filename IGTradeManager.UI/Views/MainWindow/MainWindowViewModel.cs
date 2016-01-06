@@ -17,31 +17,26 @@ namespace IGTradeManager.UI.Views.MainWindow
         private readonly IDataAccess _DataAccess;
         private readonly IDataCache _DataCache;
         private readonly IAccountService _AccountService;
+        private readonly IOrdersService _OrdersService;
 
-        public MainWindowViewModel(IDataAccess dataAccess, IDataCache dataCache, IAccountService accountService)
+        public MainWindowViewModel(IDataAccess dataAccess, IDataCache dataCache, IAccountService accountService, IOrdersService ordersService)
         {
             _DataAccess = dataAccess;
             _DataCache = dataCache;
             _AccountService = accountService;
+            _OrdersService = ordersService;
 
             _DataCache.PropertyChanged += _DataCache_PropertyChanged;
-            _DataCache.DatabaseOrders.ListChanged += DatabaseOrders_ListChanged;
+          
+            PropertyChanged += MainWindowViewModel_PropertyChanged;
 
             LoggedOut = true;
-        }
-        
+        }       
+
         public void Login(string apiKey, string username, string password)
         {
             LogMessage = "Resetting data cache...";
-            _DataCache.Reset();
-
-            LogMessage = "Getting database orders...";
-            //fill database orders
-            var databaseOrders = _DataAccess.GetDatabaseOrder();
-            foreach (var item in databaseOrders)
-            {
-                _DataCache.DatabaseOrders.Add(item);
-            }
+            _DataCache.Reset();            
 
             LogMessage = "Logging into Ig Account Service...";
             //login to IG
@@ -50,6 +45,18 @@ namespace IGTradeManager.UI.Views.MainWindow
             LogMessage = "Filling Ig Working Orders...";
             //fill IG working orders
             _AccountService.LoadWorkingOrders();
+
+            LogMessage = "Subscribing to LightStreamer service...";
+            _AccountService.ConnectToLightStreamer();
+
+            LogMessage = "Getting database orders...";
+            _OrdersService.LoadDatabaseOrders();
+
+            LogMessage = "Subscribe tickers for market details...";
+            foreach (var order in _DataCache.DatabaseOrders)
+            {
+                _AccountService.SubscribeToMarketListener(order);
+            }
 
             LoggedIn = true;
             LoggedOut = false;
@@ -69,28 +76,12 @@ namespace IGTradeManager.UI.Views.MainWindow
 
         public void DeleteDatabaseOrder(DatabaseOrder order)
         {
-            _DataAccess.DeleteDatabaseOrder(order);
-
-            //reload orders
-            _DataCache.DatabaseOrders.Clear();
-            var databaseOrders = _DataAccess.GetDatabaseOrder();
-            foreach (var item in databaseOrders)
-            {
-                _DataCache.DatabaseOrders.Add(item);
-            }
+            _OrdersService.DeleteDatabaseOrder(order);
         }
 
         public void UpdateDatabaseOrder(DatabaseOrder order)
         {
-            _DataAccess.SaveDatabaseOrder(order);
-
-            //reload orders
-            _DataCache.DatabaseOrders.Clear();
-            var databaseOrders = _DataAccess.GetDatabaseOrder();
-            foreach (var item in databaseOrders)
-            {
-                _DataCache.DatabaseOrders.Add(item);
-            }
+            _OrdersService.UpdateDatabaseOrder(order);
         }
 
         public BindingList<DatabaseOrder> DatabaseOrders
@@ -146,6 +137,34 @@ namespace IGTradeManager.UI.Views.MainWindow
                 if (_LogMessage != value)
                 {
                     _LogMessage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal _RiskPerTrade;
+        public decimal RiskPerTrade
+        {
+            get { return _RiskPerTrade; }
+            set
+            {
+                if (_RiskPerTrade != value)
+                {
+                    _RiskPerTrade = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal _SpreadToApply;
+        public decimal SpreadToApply
+        {
+            get { return _SpreadToApply; }
+            set
+            {
+                if (_SpreadToApply != value)
+                {
+                    _SpreadToApply = value;
                     OnPropertyChanged();
                 }
             }
@@ -268,17 +287,23 @@ namespace IGTradeManager.UI.Views.MainWindow
             }
         }
 
-        private void DatabaseOrders_ListChanged(object sender, ListChangedEventArgs e)
+        private void MainWindowViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.ListChangedType == ListChangedType.ItemChanged)
+            if (e.PropertyName == "SpreadToApply")
             {
-                var changedDatabaseOrder = _DataCache.DatabaseOrders[e.NewIndex];
-                var rowsUpdated = _DataAccess.SaveDatabaseOrder(changedDatabaseOrder);
-                if (rowsUpdated == 1)
+                foreach (var order in DatabaseOrders)
                 {
-                    LogMessage = string.Format("Updated order for '{0}' in database", changedDatabaseOrder.Ticker);
+                    order.SpreadToApply = SpreadToApply;
                 }
-            }           
-        }
+            }
+
+            if (e.PropertyName == "RiskPerTrade")
+            {
+                foreach (var order in DatabaseOrders)
+                {
+                    order.RiskPerTrade = RiskPerTrade;
+                }
+            }
+        }        
     }
 }

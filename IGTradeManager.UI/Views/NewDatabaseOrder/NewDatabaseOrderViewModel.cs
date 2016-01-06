@@ -1,6 +1,7 @@
 ﻿using IGTradeManager.UI.Data;
 using IGTradeManager.UI.Data.DataAccess;
 using IGTradeManager.UI.Model;
+using IGTradeManager.UI.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,15 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
     {
         private readonly IDataAccess _DataAccess;
         private readonly IDataCache _DataCache;
+        private readonly IOrdersService _OrdersService;
+        private readonly IAccountService _AccountService;
 
-        public NewDatabaseOrderViewModel(IDataAccess dataAccess, IDataCache dataCache)
+        public NewDatabaseOrderViewModel(IDataAccess dataAccess, IDataCache dataCache, IOrdersService ordersService, IAccountService accountService)
         {
             _DataAccess = dataAccess;
             _DataCache = dataCache;
+            _OrdersService = ordersService;
+            _AccountService = accountService;
         }
 
         private string _Name;
@@ -122,24 +127,18 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
         {
             var order = new DatabaseOrder()
             {
-                Name = Name,
-                Ticker = Ticker,
-                IgInstrument = IgInstrumentName,
-                Expiry = Expiry,
+                Name = Name.Trim(),
+                Ticker = Ticker.Trim(),
+                IgInstrument = IgInstrumentName.Trim(),
+                Expiry = Expiry.Trim(),
                 NextEarnings = NextEarnings,
                 BreakoutLevel = BreakoutLevel,
                 StopDistance = StopDistance
             };
 
-            _DataAccess.InsertDatabaseOrder(order);
+            _OrdersService.InsertDatabaseOrder(order);
 
-            //reload orders
-            _DataCache.DatabaseOrders.Clear();
-            var databaseOrders = _DataAccess.GetDatabaseOrder();
-            foreach (var item in databaseOrders)
-            {
-                _DataCache.DatabaseOrders.Add(item);
-            }
+            _AccountService.SubscribeToMarketListener(order);         
         }
     }
 }

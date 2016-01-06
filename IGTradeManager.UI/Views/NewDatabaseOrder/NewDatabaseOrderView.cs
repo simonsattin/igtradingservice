@@ -35,6 +35,14 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
             {
                 _ViewModel.InsertDatabaseOrder();
 
+                _NameTextbox.Clear();
+                _TickerTextbox.Clear();
+                _IgInstrumentTextbox.Clear();
+                _ExpiryTextbox.Clear();
+                _NextEarningsDateTimePicker.Value = DateTime.Today;
+                _BreakoutLevelNumeric.Value = 0;
+                _StopDistanceNumeric.Value = 0;
+
                 DialogResult = DialogResult.OK;
             }            
         }
@@ -109,6 +117,36 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
             {
                 _ErrorProvider.SetError(_NextEarningsDateTimePicker, "");
             }
+        }
+
+        private void _NameTextbox_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _NameTextbox.SelectAll(); });
+        }
+
+        private void _TickerTextbox_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _TickerTextbox.SelectAll(); });
+        }
+
+        private void _IgInstrumentTextbox_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _IgInstrumentTextbox.SelectAll(); });
+        }
+
+        private void _ExpiryTextbox_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _ExpiryTextbox.SelectAll(); });
+        }
+
+        private void _BreakoutLevelNumeric_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _BreakoutLevelNumeric.Select(0, _BreakoutLevelNumeric.Text.Length); });
+        }
+
+        private void _StopDistanceNumeric_Enter(object sender, EventArgs e)
+        {
+            BeginInvoke((Action)delegate { _StopDistanceNumeric.Select(0, _StopDistanceNumeric.Text.Length); });
         }
     }
 }

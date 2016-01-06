@@ -38,6 +38,10 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DotNetClient_N2, Version=2.0.4168.21411, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdPartyDlls\DotNetClient_N2.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -83,6 +87,12 @@
     <Compile Include="Model\IgWorkingOrder.cs" />
     <Compile Include="Modules\AccountService.cs" />
     <Compile Include="Modules\IAccountService.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\AccountSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\IMarketSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\MarketSubscription.cs" />
+    <Compile Include="Modules\IOrdersService.cs" />
+    <Compile Include="Modules\MarketSubscriptionTickEventArgs.cs" />
+    <Compile Include="Modules\OrdersService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadSafeBindingSource.cs">

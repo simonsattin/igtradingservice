@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IGTradeManager.UI.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace IGTradeManager.UI.Modules
         bool Login(string apiKey, string username, string password);
         void Logout();
         void LoadWorkingOrders();
+        bool ConnectToLightStreamer();
+        void SubscribeToMarketListener(DatabaseOrder order);
     }
 }

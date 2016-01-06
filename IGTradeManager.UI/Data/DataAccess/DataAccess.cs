@@ -19,7 +19,7 @@ namespace IGTradeManager.UI.Data.DataAccess
             _ConnectionString = ConfigurationManager.ConnectionStrings["AmazonConnection"].ConnectionString;
         }
 
-        public List<DatabaseOrder> GetDatabaseOrder()
+        public List<DatabaseOrder> GetDatabaseOrders()
         {
             using (var connection = new SqlConnection(_ConnectionString))
             {

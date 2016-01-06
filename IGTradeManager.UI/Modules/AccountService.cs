@@ -1,6 +1,9 @@
-﻿using IGPublicPcl;
+﻿using dto.colibri.endpoint.auth.v2;
+using IGPublicPcl;
 using IGTradeManager.UI.Data;
 using IGTradeManager.UI.Model;
+using IGTradeManager.UI.Modules.IgLightStreamerSubscriptions;
+using Lightstreamer.DotNet.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +11,36 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace IGTradeManager.UI.Modules
-{
+{   
     public class AccountService : IAccountService
     {
         private readonly IGStreamingApiClient _StreamClient;
         private readonly IgRestApiClient _IGApi;
         private readonly IDataCache _DataCache;
+        private AuthenticationResponse _LastResponse;
+        private readonly IMarketSubscription _MarketSubscription;
 
-        public AccountService(IDataCache dataCache)
+        public AccountService(IDataCache dataCache, IMarketSubscription marketSubscription)
         {
             _IGApi = new IgRestApiClient();
             _StreamClient = new IGStreamingApiClient();
             _DataCache = dataCache;
+            _MarketSubscription = new MarketSubscription();
+
+            _MarketSubscription.MarketSubscriptionTick += _MarketSubscription_MarketSubscriptionTick;  
+        }
+
+        private void _MarketSubscription_MarketSubscriptionTick(MarketSubscriptionTickEventArgs e)
+        {
+            var matchingOrder = _DataCache.DatabaseOrders.FirstOrDefault(o => e.Ticker.Contains(o.IgInstrument));
+            if (matchingOrder != null)
+            {
+                matchingOrder.Bid = e.Bid;
+                matchingOrder.Ask = e.Offer;
+                matchingOrder.ChangePercent = e.ChangePercent;
+                matchingOrder.Status = e.MarketState;
+                matchingOrder.LastUpdateTime = e.UpdateTime;
+            }
         }
 
         public bool Login(string apiKey, string username, string password)
@@ -30,7 +51,8 @@ namespace IGTradeManager.UI.Modules
             ar.password = password;
 
             var response = _IGApi.SecureAuthenticate(ar, apiKey);
-            var result = response.Result;            
+            var result = response.Result;
+            _LastResponse = result.Response;        
 
             if (result == null || result.Response == null || result.Response.accounts.Count == 0)
                 return false;
@@ -41,10 +63,7 @@ namespace IGTradeManager.UI.Modules
             _DataCache.Balance = result.Response.accountInfo.balance;
             _DataCache.ProfitAndLoss = result.Response.accountInfo.profitLoss;
             _DataCache.Deposit = result.Response.accountInfo.deposit;
-            _DataCache.Available = result.Response.accountInfo.available;
-
-            //connect to lightstream
-            var conversationContext = _IGApi.GetConversationContext();
+            _DataCache.Available = result.Response.accountInfo.available;                       
 
             return true;
         }
@@ -77,6 +96,23 @@ namespace IGTradeManager.UI.Modules
             }
         }
 
+        public bool ConnectToLightStreamer()
+        {
+            var conversationContext = _IGApi.GetConversationContext();
+
+            //connect to light streamer
+            return _StreamClient.Connect(
+                _LastResponse.currentAccountId,
+                conversationContext.cst,
+                conversationContext.xSecurityToken,
+                conversationContext.apiKey,
+                _LastResponse.lightstreamerEndpoint);
+        }
+
+        public void SubscribeToMarketListener(DatabaseOrder order)
+        {
+            var key = _StreamClient.subscribeToMarketDetails(new string[] { order.IgInstrument }, _MarketSubscription);
+        }
 
         public void Logout()
         {
@@ -84,5 +120,5 @@ namespace IGTradeManager.UI.Modules
 
             _StreamClient.disconnect();
         }
-    }
+    }        
 }

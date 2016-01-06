@@ -1,6 +1,7 @@
 ﻿using IGTradeManager.UI.Data;
 using IGTradeManager.UI.Data.DataAccess;
 using IGTradeManager.UI.Modules;
+using IGTradeManager.UI.Modules.IgLightStreamerSubscriptions;
 using IGTradeManager.UI.Views.MainWindow;
 using IGTradeManager.UI.Views.NewDatabaseOrder;
 using SimpleInjector;
@@ -24,6 +25,9 @@ namespace IGTradeManager.UI
             Container.RegisterSingleton<IDataCache, DataCache>();
             Container.RegisterSingleton<IDataAccess, DataAccess>();
 
+            Container.RegisterSingleton<IMarketSubscription, MarketSubscription>();
+
+            Container.RegisterSingleton<IOrdersService, OrdersService>();          
             Container.RegisterSingleton<IAccountService, AccountService>();
             Container.RegisterSingleton<IMainWindowViewModel, MainWindowViewModel>();
             Container.RegisterSingleton<INewDatabaseOrderViewModel, NewDatabaseOrderViewModel>();

@@ -68,6 +68,7 @@
             this._NameTextbox.Name = "_NameTextbox";
             this._NameTextbox.Size = new System.Drawing.Size(459, 38);
             this._NameTextbox.TabIndex = 1;
+            this._NameTextbox.Enter += new System.EventHandler(this._NameTextbox_Enter);
             this._NameTextbox.Validating += new System.ComponentModel.CancelEventHandler(this._NameTextbox_Validating);
             // 
             // DataContext
@@ -82,6 +83,7 @@
             this._TickerTextbox.Name = "_TickerTextbox";
             this._TickerTextbox.Size = new System.Drawing.Size(459, 38);
             this._TickerTextbox.TabIndex = 3;
+            this._TickerTextbox.Enter += new System.EventHandler(this._TickerTextbox_Enter);
             this._TickerTextbox.Validating += new System.ComponentModel.CancelEventHandler(this._TickerTextbox_Validating);
             // 
             // label2
@@ -100,6 +102,7 @@
             this._IgInstrumentTextbox.Name = "_IgInstrumentTextbox";
             this._IgInstrumentTextbox.Size = new System.Drawing.Size(459, 38);
             this._IgInstrumentTextbox.TabIndex = 5;
+            this._IgInstrumentTextbox.Enter += new System.EventHandler(this._IgInstrumentTextbox_Enter);
             this._IgInstrumentTextbox.Validating += new System.ComponentModel.CancelEventHandler(this._IgInstrumentTextbox_Validating);
             // 
             // label3
@@ -118,6 +121,7 @@
             this._ExpiryTextbox.Name = "_ExpiryTextbox";
             this._ExpiryTextbox.Size = new System.Drawing.Size(459, 38);
             this._ExpiryTextbox.TabIndex = 7;
+            this._ExpiryTextbox.Enter += new System.EventHandler(this._ExpiryTextbox_Enter);
             this._ExpiryTextbox.Validating += new System.ComponentModel.CancelEventHandler(this._ExpiryTextbox_Validating);
             // 
             // label4
@@ -181,9 +185,15 @@
             this._BreakoutLevelNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.DataContext, "BreakoutLevel", true));
             this._BreakoutLevelNumeric.DecimalPlaces = 4;
             this._BreakoutLevelNumeric.Location = new System.Drawing.Point(284, 472);
+            this._BreakoutLevelNumeric.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this._BreakoutLevelNumeric.Name = "_BreakoutLevelNumeric";
             this._BreakoutLevelNumeric.Size = new System.Drawing.Size(459, 38);
             this._BreakoutLevelNumeric.TabIndex = 11;
+            this._BreakoutLevelNumeric.Enter += new System.EventHandler(this._BreakoutLevelNumeric_Enter);
             this._BreakoutLevelNumeric.Validating += new System.ComponentModel.CancelEventHandler(this._BreakoutLevelNumeric_Validating);
             // 
             // _StopDistanceNumeric
@@ -191,9 +201,15 @@
             this._StopDistanceNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.DataContext, "StopDistance", true));
             this._StopDistanceNumeric.DecimalPlaces = 4;
             this._StopDistanceNumeric.Location = new System.Drawing.Point(284, 550);
+            this._StopDistanceNumeric.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this._StopDistanceNumeric.Name = "_StopDistanceNumeric";
             this._StopDistanceNumeric.Size = new System.Drawing.Size(459, 38);
             this._StopDistanceNumeric.TabIndex = 13;
+            this._StopDistanceNumeric.Enter += new System.EventHandler(this._StopDistanceNumeric_Enter);
             this._StopDistanceNumeric.Validating += new System.ComponentModel.CancelEventHandler(this._StopDistanceNumeric_Validating);
             // 
             // _ErrorProvider

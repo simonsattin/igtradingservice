@@ -24,6 +24,8 @@ namespace IGTradeManager.UI.Views.MainWindow
         decimal? Deposit { get;  }
         decimal? Balance { get;  }
         decimal? ProfitAndLoss { get; }
+        decimal RiskPerTrade { get; set; }
+        decimal SpreadToApply { get; set; }
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
         BindingList<IgWorkingOrder> IgWorkingOrders { get; }
