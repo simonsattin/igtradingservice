@@ -84,6 +84,7 @@
     <Compile Include="IController.cs" />
     <Compile Include="DependencyObject.cs" />
     <Compile Include="Model\DatabaseOrder.cs" />
+    <Compile Include="Model\IgOpenPosition.cs" />
     <Compile Include="Model\IgWorkingOrder.cs" />
     <Compile Include="Modules\AccountService.cs" />
     <Compile Include="Modules\IAccountService.cs" />

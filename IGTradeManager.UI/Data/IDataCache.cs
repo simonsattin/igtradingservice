@@ -17,6 +17,7 @@ namespace IGTradeManager.UI.Data
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
         BindingList<IgWorkingOrder> IgWorkingOrders { get; }
+        BindingList<IgOpenPosition> IgOpenPositions { get; }
 
         string AccountId { get; set; }
         string AccountName { get; set; }

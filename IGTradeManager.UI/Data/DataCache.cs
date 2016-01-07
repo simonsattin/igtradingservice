@@ -12,11 +12,30 @@ namespace IGTradeManager.UI.Data
     {
         private readonly object _DatabaseOrdersLock = new object();
         private readonly object _IgWorkingOrdersLock = new object();
+        private readonly object _IgOpenPositionsLock = new object();
 
         public DataCache()
         {
             _DatabaseOrders = new BindingList<DatabaseOrder>();
             _IgWorkingOrders = new BindingList<IgWorkingOrder>();
+            _IgOpenPositions = new BindingList<IgOpenPosition>();
+        }
+
+        private BindingList<IgOpenPosition> _IgOpenPositions;
+        public BindingList<IgOpenPosition> IgOpenPositions
+        {
+            get { lock (_IgOpenPositionsLock) { return _IgOpenPositions; } }
+            private set
+            {
+                lock (_IgOpenPositionsLock)
+                {
+                    if (_IgOpenPositions != value)
+                    {
+                        _IgOpenPositions = value;
+                        OnPropertyChanged();
+                    }
+                }
+            }
         }
 
         private BindingList<DatabaseOrder> _DatabaseOrders;
