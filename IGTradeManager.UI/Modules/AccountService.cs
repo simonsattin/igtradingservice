@@ -18,16 +18,24 @@ namespace IGTradeManager.UI.Modules
         private readonly IgRestApiClient _IGApi;
         private readonly IDataCache _DataCache;
         private AuthenticationResponse _LastResponse;
-        private readonly IMarketSubscription _MarketSubscription;
+        private readonly IMarketUpdateSubscription _MarketSubscription;
+        private readonly IAccountUpdateSubscription _AccountUpdateSubscription;
 
-        public AccountService(IDataCache dataCache, IMarketSubscription marketSubscription)
+        public AccountService(IDataCache dataCache, IMarketUpdateSubscription marketSubscription, IAccountUpdateSubscription accountUpdateSubscription)
         {
             _IGApi = new IgRestApiClient();
             _StreamClient = new IGStreamingApiClient();
             _DataCache = dataCache;
-            _MarketSubscription = new MarketSubscription();
+            _MarketSubscription = new MarketUpdateSubscription();
+            _AccountUpdateSubscription = new AccountUpdateSubscription();
 
-            _MarketSubscription.MarketSubscriptionTick += _MarketSubscription_MarketSubscriptionTick;  
+            _MarketSubscription.MarketSubscriptionTick += _MarketSubscription_MarketSubscriptionTick;
+            _AccountUpdateSubscription.AccountSubscriptionUpdate += _AccountUpdateSubscription_AccountSubscriptionUpdate;
+        }
+
+        private void _AccountUpdateSubscription_AccountSubscriptionUpdate(AccountSubscriptionUpdateEventArgs e)
+        {
+            
         }
 
         private void _MarketSubscription_MarketSubscriptionTick(MarketSubscriptionTickEventArgs e)
@@ -96,20 +104,40 @@ namespace IGTradeManager.UI.Modules
             }
         }
 
+        public void LoadIgOpenPositions()
+        {
+            var openPositions = _IGApi.getOTCOpenPositionsV2().Result.Response.positions;
+
+            foreach (var position in openPositions)
+            {                
+                _DataCache.IgOpenPositions.Add(new IgOpenPosition()
+                {
+                    
+                });
+            }
+        }
+
         public bool ConnectToLightStreamer()
         {
             var conversationContext = _IGApi.GetConversationContext();
 
             //connect to light streamer
-            return _StreamClient.Connect(
+            if (!_StreamClient.Connect(
                 _LastResponse.currentAccountId,
                 conversationContext.cst,
                 conversationContext.xSecurityToken,
                 conversationContext.apiKey,
-                _LastResponse.lightstreamerEndpoint);
+                _LastResponse.lightstreamerEndpoint))
+            {
+                return false;
+            }
+
+            _StreamClient.subscribeToAccountDetails(_LastResponse.currentAccountId, _AccountUpdateSubscription);
+
+            return true;
         }
 
-        public void SubscribeToMarketListener(DatabaseOrder order)
+        public void SubscribeDatabaseOrderToMarketListener(DatabaseOrder order)
         {
             var key = _StreamClient.subscribeToMarketDetails(new string[] { order.IgInstrument }, _MarketSubscription);
         }

@@ -642,7 +642,7 @@
             this._LogMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._LogMessageLabel.AutoSize = true;
             this._LogMessageLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LogMessage", true));
-            this._LogMessageLabel.Location = new System.Drawing.Point(48, 1177);
+            this._LogMessageLabel.Location = new System.Drawing.Point(48, 481);
             this._LogMessageLabel.Name = "_LogMessageLabel";
             this._LogMessageLabel.Size = new System.Drawing.Size(199, 32);
             this._LogMessageLabel.TabIndex = 24;
@@ -721,7 +721,7 @@
             this._Tabs.Location = new System.Drawing.Point(41, 263);
             this._Tabs.Name = "_Tabs";
             this._Tabs.SelectedIndex = 0;
-            this._Tabs.Size = new System.Drawing.Size(2254, 892);
+            this._Tabs.Size = new System.Drawing.Size(828, 196);
             this._Tabs.TabIndex = 31;
             // 
             // _DatabaseOrdersTabpage
@@ -751,7 +751,7 @@
             this._OpenIGPositionsTabpage.Controls.Add(this.@__IgOpenPositionsDataView);
             this._OpenIGPositionsTabpage.Location = new System.Drawing.Point(10, 48);
             this._OpenIGPositionsTabpage.Name = "_OpenIGPositionsTabpage";
-            this._OpenIGPositionsTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._OpenIGPositionsTabpage.Size = new System.Drawing.Size(808, 138);
             this._OpenIGPositionsTabpage.TabIndex = 2;
             this._OpenIGPositionsTabpage.Text = "Open Positions";
             this._OpenIGPositionsTabpage.UseVisualStyleBackColor = true;
@@ -763,14 +763,14 @@
             this.@__IgOpenPositionsDataView.Location = new System.Drawing.Point(0, 0);
             this.@__IgOpenPositionsDataView.Name = "__IgOpenPositionsDataView";
             this.@__IgOpenPositionsDataView.RowTemplate.Height = 40;
-            this.@__IgOpenPositionsDataView.Size = new System.Drawing.Size(2234, 834);
+            this.@__IgOpenPositionsDataView.Size = new System.Drawing.Size(808, 138);
             this.@__IgOpenPositionsDataView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(2320, 1235);
+            this.ClientSize = new System.Drawing.Size(894, 539);
             this.Controls.Add(this._Tabs);
             this.Controls.Add(this._PercentOfSpreadNumeric);
             this.Controls.Add(this.label14);

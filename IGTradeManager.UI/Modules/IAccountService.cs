@@ -13,6 +13,6 @@ namespace IGTradeManager.UI.Modules
         void Logout();
         void LoadWorkingOrders();
         bool ConnectToLightStreamer();
-        void SubscribeToMarketListener(DatabaseOrder order);
+        void SubscribeDatabaseOrderToMarketListener(DatabaseOrder order);
     }
 }

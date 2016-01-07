@@ -87,10 +87,12 @@
     <Compile Include="Model\IgOpenPosition.cs" />
     <Compile Include="Model\IgWorkingOrder.cs" />
     <Compile Include="Modules\AccountService.cs" />
+    <Compile Include="Modules\AccountSubscriptionUpdateEventArgs.cs" />
     <Compile Include="Modules\IAccountService.cs" />
-    <Compile Include="Modules\IgLightStreamerSubscriptions\AccountSubscription.cs" />
-    <Compile Include="Modules\IgLightStreamerSubscriptions\IMarketSubscription.cs" />
-    <Compile Include="Modules\IgLightStreamerSubscriptions\MarketSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\AccountUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\IAccountUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\IMarketUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\MarketUpdateSubscription.cs" />
     <Compile Include="Modules\IOrdersService.cs" />
     <Compile Include="Modules\MarketSubscriptionTickEventArgs.cs" />
     <Compile Include="Modules\OrdersService.cs" />

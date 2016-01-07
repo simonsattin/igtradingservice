@@ -55,7 +55,7 @@ namespace IGTradeManager.UI.Views.MainWindow
             LogMessage = "Subscribe tickers for market details...";
             foreach (var order in _DataCache.DatabaseOrders)
             {
-                _AccountService.SubscribeToMarketListener(order);
+                _AccountService.SubscribeDatabaseOrderToMarketListener(order);
             }
 
             LoggedIn = true;

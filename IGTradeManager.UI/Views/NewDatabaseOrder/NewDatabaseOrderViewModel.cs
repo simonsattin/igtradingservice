@@ -138,7 +138,7 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
 
             _OrdersService.InsertDatabaseOrder(order);
 
-            _AccountService.SubscribeToMarketListener(order);         
+            _AccountService.SubscribeDatabaseOrderToMarketListener(order);         
         }
     }
 }

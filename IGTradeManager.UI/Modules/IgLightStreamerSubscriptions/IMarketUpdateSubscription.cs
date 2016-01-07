@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace IGTradeManager.UI.Modules.IgLightStreamerSubscriptions
 {
-    public interface IMarketSubscription : IHandyTableListener
+    public interface IMarketUpdateSubscription : IHandyTableListener
     {
-        event MarketSubscription.MarketSubscriptionTickEventHandler MarketSubscriptionTick;
+        event MarketUpdateSubscription.MarketSubscriptionTickEventHandler MarketSubscriptionTick;
     }
 }

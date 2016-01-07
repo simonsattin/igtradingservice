@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IGTradeManager.UI.Modules
 {
-    public class MarketSubscriptionTickEventArgs
+    public class MarketSubscriptionTickEventArgs : EventArgs
     {
         public string Ticker { get; set; }
         public decimal MidOpen { get; set; }
