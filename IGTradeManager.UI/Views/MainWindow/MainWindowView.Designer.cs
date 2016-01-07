@@ -80,8 +80,6 @@
             this.LastUpdateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deleteGridViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.databaseOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this._IgWorkingOrdersDataView = new System.Windows.Forms.DataGridView();
             this.dealIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.directionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +104,11 @@
             this._RiskPerTrade = new System.Windows.Forms.NumericUpDown();
             this._PercentOfSpreadNumeric = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
+            this._Tabs = new System.Windows.Forms.TabControl();
+            this._DatabaseOrdersTabpage = new System.Windows.Forms.TabPage();
+            this._IGOrdersTabpage = new System.Windows.Forms.TabPage();
+            this._OpenIGPositionsTabpage = new System.Windows.Forms.TabPage();
+            this.@__IgOpenPositionsDataView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).BeginInit();
@@ -113,6 +116,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.igWorkingOrdersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._RiskPerTrade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PercentOfSpreadNumeric)).BeginInit();
+            this._Tabs.SuspendLayout();
+            this._DatabaseOrdersTabpage.SuspendLayout();
+            this._IGOrdersTabpage.SuspendLayout();
+            this._OpenIGPositionsTabpage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.@__IgOpenPositionsDataView)).BeginInit();
             this.SuspendLayout();
             // 
             // _LoginButton
@@ -312,8 +320,6 @@
             this._DatabaseOrdersGridView.AllowUserToAddRows = false;
             this._DatabaseOrdersGridView.AllowUserToDeleteRows = false;
             this._DatabaseOrdersGridView.AllowUserToResizeRows = false;
-            this._DatabaseOrdersGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._DatabaseOrdersGridView.AutoGenerateColumns = false;
             this._DatabaseOrdersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this._DatabaseOrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -337,11 +343,12 @@
             this.LastUpdateTime,
             this.deleteGridViewColumn});
             this._DatabaseOrdersGridView.DataSource = this.databaseOrdersBindingSource;
-            this._DatabaseOrdersGridView.Location = new System.Drawing.Point(41, 321);
+            this._DatabaseOrdersGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._DatabaseOrdersGridView.Location = new System.Drawing.Point(3, 3);
             this._DatabaseOrdersGridView.Name = "_DatabaseOrdersGridView";
             this._DatabaseOrdersGridView.RowHeadersVisible = false;
             this._DatabaseOrdersGridView.RowTemplate.Height = 20;
-            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2570, 399);
+            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2228, 828);
             this._DatabaseOrdersGridView.TabIndex = 20;
             this._DatabaseOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellContentClick);
             this._DatabaseOrdersGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this._DatabaseOrdersGridView_CellFormatting);
@@ -494,31 +501,11 @@
             this.databaseOrdersBindingSource.DataMember = "DatabaseOrders";
             this.databaseOrdersBindingSource.DataSource = this.DataContext;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 277);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(238, 32);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Database Orders:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(38, 802);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(256, 32);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "IG Working Orders:";
-            // 
             // _IgWorkingOrdersDataView
             // 
             this._IgWorkingOrdersDataView.AllowUserToAddRows = false;
             this._IgWorkingOrdersDataView.AllowUserToDeleteRows = false;
             this._IgWorkingOrdersDataView.AllowUserToResizeRows = false;
-            this._IgWorkingOrdersDataView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._IgWorkingOrdersDataView.AutoGenerateColumns = false;
             this._IgWorkingOrdersDataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this._IgWorkingOrdersDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -540,11 +527,12 @@
             this.expiryDataGridViewTextBoxColumn1,
             this.marketStatusDataGridViewTextBoxColumn});
             this._IgWorkingOrdersDataView.DataSource = this.igWorkingOrdersBindingSource;
-            this._IgWorkingOrdersDataView.Location = new System.Drawing.Point(41, 837);
+            this._IgWorkingOrdersDataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._IgWorkingOrdersDataView.Location = new System.Drawing.Point(3, 3);
             this._IgWorkingOrdersDataView.Name = "_IgWorkingOrdersDataView";
             this._IgWorkingOrdersDataView.RowHeadersVisible = false;
             this._IgWorkingOrdersDataView.RowTemplate.Height = 40;
-            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2570, 304);
+            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2228, 828);
             this._IgWorkingOrdersDataView.TabIndex = 22;
             // 
             // dealIdDataGridViewTextBoxColumn
@@ -651,19 +639,21 @@
             // 
             // _LogMessageLabel
             // 
+            this._LogMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._LogMessageLabel.AutoSize = true;
             this._LogMessageLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LogMessage", true));
-            this._LogMessageLabel.Location = new System.Drawing.Point(638, 50);
+            this._LogMessageLabel.Location = new System.Drawing.Point(48, 1177);
             this._LogMessageLabel.Name = "_LogMessageLabel";
-            this._LogMessageLabel.Size = new System.Drawing.Size(0, 32);
+            this._LogMessageLabel.Size = new System.Drawing.Size(199, 32);
             this._LogMessageLabel.TabIndex = 24;
+            this._LogMessageLabel.Text = "Log messages";
             // 
             // _AddOrderButton
             // 
             this._AddOrderButton.DataBindings.Add(new System.Windows.Forms.Binding("Enabled", this.DataContext, "LoggedIn", true));
-            this._AddOrderButton.Location = new System.Drawing.Point(41, 726);
+            this._AddOrderButton.Location = new System.Drawing.Point(644, 35);
             this._AddOrderButton.Name = "_AddOrderButton";
-            this._AddOrderButton.Size = new System.Drawing.Size(181, 55);
+            this._AddOrderButton.Size = new System.Drawing.Size(253, 60);
             this._AddOrderButton.TabIndex = 26;
             this._AddOrderButton.Text = "Add Order";
             this._AddOrderButton.UseVisualStyleBackColor = true;
@@ -720,21 +710,74 @@
             this.label14.TabIndex = 29;
             this.label14.Text = "% spread:";
             // 
+            // _Tabs
+            // 
+            this._Tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._Tabs.Controls.Add(this._DatabaseOrdersTabpage);
+            this._Tabs.Controls.Add(this._IGOrdersTabpage);
+            this._Tabs.Controls.Add(this._OpenIGPositionsTabpage);
+            this._Tabs.Location = new System.Drawing.Point(41, 263);
+            this._Tabs.Name = "_Tabs";
+            this._Tabs.SelectedIndex = 0;
+            this._Tabs.Size = new System.Drawing.Size(2254, 892);
+            this._Tabs.TabIndex = 31;
+            // 
+            // _DatabaseOrdersTabpage
+            // 
+            this._DatabaseOrdersTabpage.Controls.Add(this._DatabaseOrdersGridView);
+            this._DatabaseOrdersTabpage.Location = new System.Drawing.Point(10, 48);
+            this._DatabaseOrdersTabpage.Name = "_DatabaseOrdersTabpage";
+            this._DatabaseOrdersTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this._DatabaseOrdersTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._DatabaseOrdersTabpage.TabIndex = 0;
+            this._DatabaseOrdersTabpage.Text = "Database Orders";
+            this._DatabaseOrdersTabpage.UseVisualStyleBackColor = true;
+            // 
+            // _IGOrdersTabpage
+            // 
+            this._IGOrdersTabpage.Controls.Add(this._IgWorkingOrdersDataView);
+            this._IGOrdersTabpage.Location = new System.Drawing.Point(10, 48);
+            this._IGOrdersTabpage.Name = "_IGOrdersTabpage";
+            this._IGOrdersTabpage.Padding = new System.Windows.Forms.Padding(3);
+            this._IGOrdersTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._IGOrdersTabpage.TabIndex = 1;
+            this._IGOrdersTabpage.Text = "IG Orders";
+            this._IGOrdersTabpage.UseVisualStyleBackColor = true;
+            // 
+            // _OpenIGPositionsTabpage
+            // 
+            this._OpenIGPositionsTabpage.Controls.Add(this.@__IgOpenPositionsDataView);
+            this._OpenIGPositionsTabpage.Location = new System.Drawing.Point(10, 48);
+            this._OpenIGPositionsTabpage.Name = "_OpenIGPositionsTabpage";
+            this._OpenIGPositionsTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._OpenIGPositionsTabpage.TabIndex = 2;
+            this._OpenIGPositionsTabpage.Text = "Open Positions";
+            this._OpenIGPositionsTabpage.UseVisualStyleBackColor = true;
+            // 
+            // __IgOpenPositionsDataView
+            // 
+            this.@__IgOpenPositionsDataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.@__IgOpenPositionsDataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.@__IgOpenPositionsDataView.Location = new System.Drawing.Point(0, 0);
+            this.@__IgOpenPositionsDataView.Name = "__IgOpenPositionsDataView";
+            this.@__IgOpenPositionsDataView.RowTemplate.Height = 40;
+            this.@__IgOpenPositionsDataView.Size = new System.Drawing.Size(2234, 834);
+            this.@__IgOpenPositionsDataView.TabIndex = 0;
+            // 
             // MainWindowView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2623, 1198);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(2320, 1235);
+            this.Controls.Add(this._Tabs);
             this.Controls.Add(this._PercentOfSpreadNumeric);
             this.Controls.Add(this.label14);
             this.Controls.Add(this._RiskPerTrade);
             this.Controls.Add(this.label13);
             this.Controls.Add(this._AddOrderButton);
             this.Controls.Add(this._LogMessageLabel);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this._IgWorkingOrdersDataView);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this._DatabaseOrdersGridView);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this._AvailableLabel);
@@ -765,6 +808,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.igWorkingOrdersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._RiskPerTrade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PercentOfSpreadNumeric)).EndInit();
+            this._Tabs.ResumeLayout(false);
+            this._DatabaseOrdersTabpage.ResumeLayout(false);
+            this._IGOrdersTabpage.ResumeLayout(false);
+            this._OpenIGPositionsTabpage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.@__IgOpenPositionsDataView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -793,11 +841,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView _DatabaseOrdersGridView;
         private ThreadSafeBindingSource databaseOrdersBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn uniqueIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView _IgWorkingOrdersDataView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dealIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn directionDataGridViewTextBoxColumn;
@@ -841,5 +887,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastUpdateTime;
         private System.Windows.Forms.DataGridViewButtonColumn deleteGridViewColumn;
+        private System.Windows.Forms.TabControl _Tabs;
+        private System.Windows.Forms.TabPage _DatabaseOrdersTabpage;
+        private System.Windows.Forms.TabPage _IGOrdersTabpage;
+        private System.Windows.Forms.TabPage _OpenIGPositionsTabpage;
+        private System.Windows.Forms.DataGridView __IgOpenPositionsDataView;
     }
 }

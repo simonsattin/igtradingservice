@@ -19,9 +19,13 @@ namespace IGTradeManager.UI.Views.MainWindow
 
         public MainWindowView()
         {
+            this.ClientSize = new Size(500, 300);
+
             InitializeComponent();
 
             //this.Size = this.ClientSize;
+
+            this.ClientSize = new Size(2484, 1425);
 
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return; //The controller cannot be fetched at design time because the program has not loaded the kernel.
@@ -69,8 +73,10 @@ namespace IGTradeManager.UI.Views.MainWindow
 
         private void _AddOrderButton_Click(object sender, EventArgs e)
         {
+            _Tabs.SelectedIndex = 0;
+
             var dialog = new NewDatabaseOrderView();
-            dialog.ShowDialog();
+            dialog.ShowDialog();            
         }
 
         private void _DatabaseOrdersGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
