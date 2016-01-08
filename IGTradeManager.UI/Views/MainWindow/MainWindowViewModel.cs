@@ -24,9 +24,7 @@ namespace IGTradeManager.UI.Views.MainWindow
             _DataAccess = dataAccess;
             _DataCache = dataCache;
             _AccountService = accountService;
-            _OrdersService = ordersService;
-
-            _DataCache.PropertyChanged += _DataCache_PropertyChanged;
+            _OrdersService = ordersService;   
           
             PropertyChanged += MainWindowViewModel_PropertyChanged;
 
@@ -100,6 +98,12 @@ namespace IGTradeManager.UI.Views.MainWindow
             }
         }
 
+
+        public IDataCache DataCache
+        {
+            get { return _DataCache; }
+        }
+
         private bool _LoggedIn;
         public bool LoggedIn
         {
@@ -168,124 +172,7 @@ namespace IGTradeManager.UI.Views.MainWindow
                     OnPropertyChanged();
                 }
             }
-        }
-
-        private string _AccountId;
-        public string AccountId
-        {
-            get { return _AccountId; }
-            set
-            {
-                if (_AccountId != value)
-                {
-                    _AccountId = value;
-                    OnPropertyChanged();
-                }        
-            }
-        }
-
-        private string _AccountName;
-        public string AccountName
-        {
-            get { return _AccountName; }
-            set
-            {
-                if (_AccountName != value)
-                {
-                    _AccountName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Balance;
-        public decimal? Balance
-        {
-            get { return _Balance; }
-            set
-            {
-                if (_Balance != value)
-                {
-                    _Balance = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Deposit;
-        public decimal? Deposit
-        {
-            get { return _Deposit; }
-            set
-            {
-                if (_Deposit != value)
-                {
-                    _Deposit = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Available;
-        public decimal? Available
-        {
-            get { return _Available; }
-            set
-            {
-                if (_Available != value)
-                {
-                    _Available = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _ProfitAndLoss;
-        public decimal? ProfitAndLoss
-        {
-            get { return _ProfitAndLoss; }
-            set
-            {
-                if (_ProfitAndLoss != value)
-                {
-                    _ProfitAndLoss = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private void _DataCache_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "AccountId")
-            {
-                AccountId = _DataCache.AccountId;
-            }
-
-            if (e.PropertyName == "AccountName")
-            {
-                AccountName = _DataCache.AccountName;
-            }
-
-            if (e.PropertyName == "Balance")
-            {
-                Balance = _DataCache.Balance;
-            }
-
-            if (e.PropertyName == "Available")
-            {
-                Available = _DataCache.Available;
-            }
-
-            if (e.PropertyName == "ProfitAndLoss")
-            {
-                ProfitAndLoss = _DataCache.ProfitAndLoss;
-            }
-
-            if (e.PropertyName == "Deposit")
-            {
-                Deposit = _DataCache.Deposit;
-            }
-        }
+        }        
 
         private void MainWindowViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {

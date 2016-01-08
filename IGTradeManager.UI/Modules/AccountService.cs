@@ -20,14 +20,17 @@ namespace IGTradeManager.UI.Modules
         private AuthenticationResponse _LastResponse;
         private readonly IMarketUpdateSubscription _MarketSubscription;
         private readonly IAccountUpdateSubscription _AccountUpdateSubscription;
+        private readonly ITradeUpdateSubscription _TradeUpdateSubscription;
 
-        public AccountService(IDataCache dataCache, IMarketUpdateSubscription marketSubscription, IAccountUpdateSubscription accountUpdateSubscription)
+        public AccountService(IDataCache dataCache, IMarketUpdateSubscription marketSubscription, IAccountUpdateSubscription accountUpdateSubscription,
+            ITradeUpdateSubscription tradeUpdateSubscription)
         {
             _IGApi = new IgRestApiClient();
             _StreamClient = new IGStreamingApiClient();
             _DataCache = dataCache;
-            _MarketSubscription = new MarketUpdateSubscription();
-            _AccountUpdateSubscription = new AccountUpdateSubscription();
+            _MarketSubscription = marketSubscription;
+            _AccountUpdateSubscription = accountUpdateSubscription;
+            _TradeUpdateSubscription = tradeUpdateSubscription;
 
             _MarketSubscription.MarketSubscriptionTick += _MarketSubscription_MarketSubscriptionTick;
             _AccountUpdateSubscription.AccountSubscriptionUpdate += _AccountUpdateSubscription_AccountSubscriptionUpdate;
@@ -35,7 +38,10 @@ namespace IGTradeManager.UI.Modules
 
         private void _AccountUpdateSubscription_AccountSubscriptionUpdate(AccountSubscriptionUpdateEventArgs e)
         {
-            
+            _DataCache.ProfitAndLoss = e.PNL;
+            _DataCache.Deposit = e.Deposit;
+            _DataCache.Available = e.AvailableCash;
+            _DataCache.Balance = e.Funds;           
         }
 
         private void _MarketSubscription_MarketSubscriptionTick(MarketSubscriptionTickEventArgs e)

@@ -92,10 +92,13 @@
     <Compile Include="Modules\IgLightStreamerSubscriptions\AccountUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\IAccountUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\IMarketUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\ITradeUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\MarketUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\TradeUpdateSubscription.cs" />
     <Compile Include="Modules\IOrdersService.cs" />
     <Compile Include="Modules\MarketSubscriptionTickEventArgs.cs" />
     <Compile Include="Modules\OrdersService.cs" />
+    <Compile Include="Modules\TradeSubscriptionUpdateEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadSafeBindingSource.cs">

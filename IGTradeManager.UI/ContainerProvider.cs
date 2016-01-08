@@ -27,6 +27,7 @@ namespace IGTradeManager.UI
 
             Container.RegisterSingleton<IMarketUpdateSubscription, MarketUpdateSubscription>();
             Container.RegisterSingleton<IAccountUpdateSubscription, AccountUpdateSubscription>();
+            Container.RegisterSingleton<ITradeUpdateSubscription, TradeUpdateSubscription>();
 
             Container.RegisterSingleton<IOrdersService, OrdersService>();          
             Container.RegisterSingleton<IAccountService, AccountService>();

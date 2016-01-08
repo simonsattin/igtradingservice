@@ -162,7 +162,7 @@
             // _AccountIdLabel
             // 
             this._AccountIdLabel.AutoSize = true;
-            this._AccountIdLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountId", true));
+            this._AccountIdLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.AccountId", true));
             this._AccountIdLabel.Location = new System.Drawing.Point(201, 193);
             this._AccountIdLabel.Name = "_AccountIdLabel";
             this._AccountIdLabel.Size = new System.Drawing.Size(93, 32);
@@ -181,7 +181,7 @@
             // _AccountNameLabel
             // 
             this._AccountNameLabel.AutoSize = true;
-            this._AccountNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountName", true));
+            this._AccountNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.AccountName", true));
             this._AccountNameLabel.Location = new System.Drawing.Point(574, 193);
             this._AccountNameLabel.Name = "_AccountNameLabel";
             this._AccountNameLabel.Size = new System.Drawing.Size(93, 32);
@@ -191,7 +191,7 @@
             // _BalanceLabel
             // 
             this._BalanceLabel.AutoSize = true;
-            this._BalanceLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Balance", true));
+            this._BalanceLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.Balance", true));
             this._BalanceLabel.Location = new System.Drawing.Point(957, 193);
             this._BalanceLabel.Name = "_BalanceLabel";
             this._BalanceLabel.Size = new System.Drawing.Size(93, 32);
@@ -210,7 +210,7 @@
             // _ProfitAndLossLabel
             // 
             this._ProfitAndLossLabel.AutoSize = true;
-            this._ProfitAndLossLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "ProfitAndLoss", true));
+            this._ProfitAndLossLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.ProfitAndLoss", true));
             this._ProfitAndLossLabel.Location = new System.Drawing.Point(1413, 193);
             this._ProfitAndLossLabel.Name = "_ProfitAndLossLabel";
             this._ProfitAndLossLabel.Size = new System.Drawing.Size(93, 32);
@@ -280,7 +280,7 @@
             // _AvailableLabel
             // 
             this._AvailableLabel.AutoSize = true;
-            this._AvailableLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Available", true));
+            this._AvailableLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.Available", true));
             this._AvailableLabel.Location = new System.Drawing.Point(1767, 193);
             this._AvailableLabel.Name = "_AvailableLabel";
             this._AvailableLabel.Size = new System.Drawing.Size(93, 32);
@@ -299,7 +299,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Deposit", true));
+            this.label8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "DataCache.Deposit", true));
             this.label8.Location = new System.Drawing.Point(2090, 193);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 32);
@@ -348,7 +348,7 @@
             this._DatabaseOrdersGridView.Name = "_DatabaseOrdersGridView";
             this._DatabaseOrdersGridView.RowHeadersVisible = false;
             this._DatabaseOrdersGridView.RowTemplate.Height = 20;
-            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2228, 828);
+            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(739, 260);
             this._DatabaseOrdersGridView.TabIndex = 20;
             this._DatabaseOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellContentClick);
             this._DatabaseOrdersGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this._DatabaseOrdersGridView_CellFormatting);
@@ -532,7 +532,7 @@
             this._IgWorkingOrdersDataView.Name = "_IgWorkingOrdersDataView";
             this._IgWorkingOrdersDataView.RowHeadersVisible = false;
             this._IgWorkingOrdersDataView.RowTemplate.Height = 40;
-            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2228, 828);
+            this._IgWorkingOrdersDataView.Size = new System.Drawing.Size(2676, 708);
             this._IgWorkingOrdersDataView.TabIndex = 22;
             // 
             // dealIdDataGridViewTextBoxColumn
@@ -642,7 +642,7 @@
             this._LogMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._LogMessageLabel.AutoSize = true;
             this._LogMessageLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LogMessage", true));
-            this._LogMessageLabel.Location = new System.Drawing.Point(48, 481);
+            this._LogMessageLabel.Location = new System.Drawing.Point(48, 609);
             this._LogMessageLabel.Name = "_LogMessageLabel";
             this._LogMessageLabel.Size = new System.Drawing.Size(199, 32);
             this._LogMessageLabel.TabIndex = 24;
@@ -721,7 +721,7 @@
             this._Tabs.Location = new System.Drawing.Point(41, 263);
             this._Tabs.Name = "_Tabs";
             this._Tabs.SelectedIndex = 0;
-            this._Tabs.Size = new System.Drawing.Size(828, 196);
+            this._Tabs.Size = new System.Drawing.Size(765, 324);
             this._Tabs.TabIndex = 31;
             // 
             // _DatabaseOrdersTabpage
@@ -730,7 +730,7 @@
             this._DatabaseOrdersTabpage.Location = new System.Drawing.Point(10, 48);
             this._DatabaseOrdersTabpage.Name = "_DatabaseOrdersTabpage";
             this._DatabaseOrdersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this._DatabaseOrdersTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._DatabaseOrdersTabpage.Size = new System.Drawing.Size(745, 266);
             this._DatabaseOrdersTabpage.TabIndex = 0;
             this._DatabaseOrdersTabpage.Text = "Database Orders";
             this._DatabaseOrdersTabpage.UseVisualStyleBackColor = true;
@@ -741,7 +741,7 @@
             this._IGOrdersTabpage.Location = new System.Drawing.Point(10, 48);
             this._IGOrdersTabpage.Name = "_IGOrdersTabpage";
             this._IGOrdersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this._IGOrdersTabpage.Size = new System.Drawing.Size(2234, 834);
+            this._IGOrdersTabpage.Size = new System.Drawing.Size(2682, 714);
             this._IGOrdersTabpage.TabIndex = 1;
             this._IGOrdersTabpage.Text = "IG Orders";
             this._IGOrdersTabpage.UseVisualStyleBackColor = true;
@@ -751,7 +751,7 @@
             this._OpenIGPositionsTabpage.Controls.Add(this.@__IgOpenPositionsDataView);
             this._OpenIGPositionsTabpage.Location = new System.Drawing.Point(10, 48);
             this._OpenIGPositionsTabpage.Name = "_OpenIGPositionsTabpage";
-            this._OpenIGPositionsTabpage.Size = new System.Drawing.Size(808, 138);
+            this._OpenIGPositionsTabpage.Size = new System.Drawing.Size(2682, 714);
             this._OpenIGPositionsTabpage.TabIndex = 2;
             this._OpenIGPositionsTabpage.Text = "Open Positions";
             this._OpenIGPositionsTabpage.UseVisualStyleBackColor = true;
@@ -763,14 +763,14 @@
             this.@__IgOpenPositionsDataView.Location = new System.Drawing.Point(0, 0);
             this.@__IgOpenPositionsDataView.Name = "__IgOpenPositionsDataView";
             this.@__IgOpenPositionsDataView.RowTemplate.Height = 40;
-            this.@__IgOpenPositionsDataView.Size = new System.Drawing.Size(808, 138);
+            this.@__IgOpenPositionsDataView.Size = new System.Drawing.Size(2682, 714);
             this.@__IgOpenPositionsDataView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(894, 539);
+            this.ClientSize = new System.Drawing.Size(831, 667);
             this.Controls.Add(this._Tabs);
             this.Controls.Add(this._PercentOfSpreadNumeric);
             this.Controls.Add(this.label14);

@@ -1,4 +1,5 @@
-﻿using IGTradeManager.UI.Model;
+﻿using IGTradeManager.UI.Data;
+using IGTradeManager.UI.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,16 @@ namespace IGTradeManager.UI.Views.MainWindow
         void DeleteDatabaseOrder(DatabaseOrder order);
         void UpdateDatabaseOrder(DatabaseOrder order);
 
+        IDataCache DataCache { get; }
         bool LoggedIn { get; }
         bool LoggedOut { get; }
         string LogMessage { get; }
-        string AccountId { get; }
-        string AccountName { get; }
-        decimal? Available { get;  }
-        decimal? Deposit { get;  }
-        decimal? Balance { get;  }
-        decimal? ProfitAndLoss { get; }
+        //string AccountId { get; }
+        //string AccountName { get; }
+        //decimal? Available { get;  }
+        //decimal? Deposit { get;  }
+        //decimal? Balance { get;  }
+        //decimal? ProfitAndLoss { get; }
         decimal RiskPerTrade { get; set; }
         decimal SpreadToApply { get; set; }
 

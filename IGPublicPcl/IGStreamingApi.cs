@@ -358,7 +358,7 @@ namespace IGPublicPcl
 
         public void subscribeToAccountDetails(string accountId, IHandyTableListener tableListener)
         {
-            subscribeToAccountDetails(accountId, tableListener, new string[] { "PNL", "DEPOSIT", "USED_MARGIN", "AMOUNT_DUE", "AVAILABLE_CASH" });
+            subscribeToAccountDetails(accountId, tableListener, new string[] { "PNL", "DEPOSIT", "USED_MARGIN", "AMOUNT_DUE", "AVAILABLE_CASH", "FUNDS", "MARGIN", "EQUITY","EQUITY_USED" });
         }
 
         /// <summary>
