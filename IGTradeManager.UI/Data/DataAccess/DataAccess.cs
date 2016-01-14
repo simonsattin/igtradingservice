@@ -13,18 +13,37 @@ namespace IGTradeManager.UI.Data.DataAccess
     public class DataAccess : IDataAccess
     {
         private readonly string _ConnectionString;
+        private readonly IFactory _Factory;
 
-        public DataAccess()
+        public DataAccess(IFactory factory)
         {
             _ConnectionString = ConfigurationManager.ConnectionStrings["AmazonConnection"].ConnectionString;
+            _Factory = factory;
         }
 
         public List<DatabaseOrder> GetDatabaseOrders()
         {
+            List<DatabaseOrder> orders = new List<DatabaseOrder>();
+
             using (var connection = new SqlConnection(_ConnectionString))
             {
-                return connection.Query<DatabaseOrder>("select * from dbo.[Order]").ToList();
+                var databaseorders = connection.Query("select * from dbo.[Order]");
+                foreach (var databaseorder in databaseorders)
+                {
+                    var order = _Factory.CreateDatabaseOrder();
+                    order.Name = databaseorder.Name.Trim();
+                    order.Ticker = databaseorder.Ticker.Trim();
+                    order.IgInstrument = databaseorder.IgInstrument.Trim();
+                    order.Expiry = databaseorder.Expiry.Trim();
+                    order.NextEarnings = databaseorder.NextEarnings;
+                    order.BreakoutLevel = databaseorder.BreakoutLevel;
+                    order.StopDistance = databaseorder.StopDistance;
+
+                    orders.Add(order);
+                }                
             }
+
+            return orders;
         }
 
         public int SaveDatabaseOrder(DatabaseOrder order)

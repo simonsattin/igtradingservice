@@ -75,18 +75,33 @@ namespace IGTradeManager.UI
                 if (control != null && control.InvokeRequired)
                 {
                     //log.InfoFormat("Threadsafe binding source invoke required: {0}", ControlToInvokeOn.Name);
-                    control.Invoke(new Action<ListChangedEventArgs>(OnListChanged), e);
+                    if (IsControlValid(control))
+                        control.Invoke(new Action<ListChangedEventArgs>(OnListChanged), e);
                 }
                 else
                 {
                     base.OnListChanged(e);
                 }
             }
+            catch (ObjectDisposedException exception)
+            {
+
+            }
             catch (Exception exception)
             {
                 throw new Exception(string.Format("Unexpected error occurred invoking list changed on thread safe binding source for view {0}",
                     (ControlToInvokeOn == null) ? "" : ControlToInvokeOn.Name), exception);
             }
-        }        
+        }
+
+        private bool IsControlValid(Control myControl)
+        {
+            if (myControl == null) return false;
+            if (myControl.IsDisposed) return false;
+            if (myControl.Disposing) return false;
+            if (!myControl.IsHandleCreated) return false;
+            //if (AbortThread) return false; // the signal to the thread to stop processing
+            return true;
+        }
     }
 }

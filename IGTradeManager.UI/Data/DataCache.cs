@@ -71,155 +71,30 @@ namespace IGTradeManager.UI.Data
                     }
                 }
             }
-        }        
-
-        private decimal _RiskPerTrade;
-        public decimal RiskPerTrade
-        {
-            get
-            {
-                return _RiskPerTrade;
-            }
-            set
-            {
-                if (_RiskPerTrade != value)
-                {
-                    _RiskPerTrade = value;
-                    OnPropertyChanged();
-                }
-            }
         }
 
-        private decimal _SpreadToApply;
-        public decimal SpreadToApply
+        private DateTime _HeartbeatUpdate;
+        public DateTime HeartbeatUpdate
         {
             get
             {
-                return _SpreadToApply;
+                return _HeartbeatUpdate;
             }
             set
             {
-                if (_SpreadToApply != value)
+                if (_HeartbeatUpdate != value)
                 {
-                    _SpreadToApply = value;
+                    _HeartbeatUpdate = value;
                     OnPropertyChanged();
                 }
             }
-        }
-
-        private string _AccountId;
-        public string AccountId
-        {
-            get
-            {
-                return _AccountId;
-            }
-            set
-            {
-                if (_AccountId != value)
-                {
-                    _AccountId = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string _AccountName;
-        public string AccountName
-        {
-            get
-            {
-                return _AccountName;
-            }
-            set
-            {
-                if (_AccountName != value)
-                {
-                    _AccountName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Balance;
-        public decimal? Balance
-        {
-            get
-            {
-                return _Balance;
-            }
-            set
-            {
-                if (_Balance != value)
-                {
-                    _Balance = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _ProfitAndLoss;
-        public decimal? ProfitAndLoss
-        {
-            get
-            {
-                return _ProfitAndLoss;
-            }
-            set
-            {
-                if (_ProfitAndLoss != value)
-                {
-                    _ProfitAndLoss = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Deposit;
-        public decimal? Deposit
-        {
-            get
-            {
-                return _Deposit;
-            }
-            set
-            {
-                if (_Deposit != value)
-                {
-                    _Deposit = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal? _Available;
-        public decimal? Available
-        {
-            get
-            {
-                return _Available;
-            }
-            set
-            {
-                if (_Available != value)
-                {
-                    _Available = value;
-                    OnPropertyChanged();
-                }
-            }
-        }        
+        }                 
 
         public void Reset()
         {
             DatabaseOrders.Clear();
             IgWorkingOrders.Clear();
-
-            AccountId = string.Empty;
-            AccountName = string.Empty;
-            Balance = null;
-            Deposit = null;
-            Available = null;
-            ProfitAndLoss = null;
+            IgOpenPositions.Clear();
         }   
     }
 }

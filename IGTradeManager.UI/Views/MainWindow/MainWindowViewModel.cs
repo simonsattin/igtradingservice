@@ -14,22 +14,26 @@ namespace IGTradeManager.UI.Views.MainWindow
 {
     public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {        
-        private readonly IDataAccess _DataAccess;
         private readonly IDataCache _DataCache;
+        private readonly IAccountDataCache _AccountDataCache;
         private readonly IAccountService _AccountService;
         private readonly IOrdersService _OrdersService;
+        private readonly IRiskMetrics _RiskMetrics;
 
-        public MainWindowViewModel(IDataAccess dataAccess, IDataCache dataCache, IAccountService accountService, IOrdersService ordersService)
+        public MainWindowViewModel(IDataCache dataCache, IAccountDataCache accountDataCache, IAccountService accountService, IOrdersService ordersService, IRiskMetrics riskMetrics)
         {
-            _DataAccess = dataAccess;
             _DataCache = dataCache;
             _AccountService = accountService;
-            _OrdersService = ordersService;   
+            _OrdersService = ordersService;
+            _RiskMetrics = riskMetrics;
+            _AccountDataCache = accountDataCache;
           
             PropertyChanged += MainWindowViewModel_PropertyChanged;
+            _RiskMetrics.PropertyChanged += _RiskMetrics_PropertyChanged;
+            _DataCache.PropertyChanged += _DataCache_PropertyChanged;
 
             LoggedOut = true;
-        }       
+        }        
 
         public void Login(string apiKey, string username, string password)
         {
@@ -43,6 +47,9 @@ namespace IGTradeManager.UI.Views.MainWindow
             LogMessage = "Filling Ig Working Orders...";
             //fill IG working orders
             _AccountService.LoadWorkingOrders();
+
+            LogMessage = "Filling IG Open Positions...";
+            _AccountService.LoadOpenPositions();
 
             LogMessage = "Subscribing to LightStreamer service...";
             _AccountService.ConnectToLightStreamer();
@@ -98,11 +105,59 @@ namespace IGTradeManager.UI.Views.MainWindow
             }
         }
 
-
-        public IDataCache DataCache
+        public BindingList<IgOpenPosition> IgOpenPositions
         {
-            get { return _DataCache; }
+            get
+            {
+                return _DataCache.IgOpenPositions;
+            }
         }
+
+        public decimal? Equity
+        {
+            get { return _AccountDataCache.Equity; }
+        }
+
+        public decimal? ProfitAndLoss
+        {
+            get { return _AccountDataCache.ProfitAndLoss; }
+        }
+
+        public decimal? Funds
+        {
+            get { return _AccountDataCache.Funds; }
+        }
+
+        public decimal? Margin
+        {
+            get { return _AccountDataCache.Margin; }
+        }    
+        
+        public string AccountId
+        {
+            get { return _AccountDataCache.AccountId; }
+        } 
+
+        public string AccountName
+        {
+            get { return _AccountDataCache.AccountName; }
+        }
+
+
+        private DateTime _HeartbeatUpdated;
+        public DateTime HeartbeatUpdated
+        {
+            get { return _HeartbeatUpdated; }
+            set
+            {
+                if (_HeartbeatUpdated != value)
+                {
+                    _HeartbeatUpdated = value;
+                    OnPropertyChanged();
+                }
+            }
+        }        
+
 
         private bool _LoggedIn;
         public bool LoggedIn
@@ -172,24 +227,63 @@ namespace IGTradeManager.UI.Views.MainWindow
                     OnPropertyChanged();
                 }
             }
-        }        
+        }
+
+        private decimal _MaxSpreadPercent;
+        public decimal MaxSpreadPercent
+        {
+            get { return _MaxSpreadPercent; }
+            set
+            {
+                if (_MaxSpreadPercent != value)
+                {
+                    _MaxSpreadPercent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private void _RiskMetrics_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "RiskPerTrade")
+            {
+                RiskPerTrade = _RiskMetrics.RiskPerTrade;
+            }
+
+            if (e.PropertyName == "SpreadToApply")
+            {
+                SpreadToApply = _RiskMetrics.SpreadToApply;
+            }
+
+            if (e.PropertyName == "MaxSpreadPercent")
+            {
+                MaxSpreadPercent = _RiskMetrics.MaxSpreadPercent;
+            }
+        }       
+
+        private void _DataCache_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {            
+            if (e.PropertyName == "HeartbeatUpdate")
+            {
+                HeartbeatUpdated = _DataCache.HeartbeatUpdate;
+            }
+        }
 
         private void MainWindowViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SpreadToApply")
-            {
-                foreach (var order in DatabaseOrders)
-                {
-                    order.SpreadToApply = SpreadToApply;
-                }
-            }
-
             if (e.PropertyName == "RiskPerTrade")
             {
-                foreach (var order in DatabaseOrders)
-                {
-                    order.RiskPerTrade = RiskPerTrade;
-                }
+                _RiskMetrics.RiskPerTrade = RiskPerTrade;
+            }
+
+            if (e.PropertyName == "SpreadToApply")
+            {
+                _RiskMetrics.SpreadToApply = SpreadToApply;
+            }
+
+            if (e.PropertyName == "MaxSpreadPercent")
+            {
+                _RiskMetrics.MaxSpreadPercent = MaxSpreadPercent;
             }
         }        
     }

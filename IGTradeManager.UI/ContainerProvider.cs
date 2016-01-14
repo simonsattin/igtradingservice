@@ -1,5 +1,6 @@
 ﻿using IGTradeManager.UI.Data;
 using IGTradeManager.UI.Data.DataAccess;
+using IGTradeManager.UI.Model;
 using IGTradeManager.UI.Modules;
 using IGTradeManager.UI.Modules.IgLightStreamerSubscriptions;
 using IGTradeManager.UI.Views.MainWindow;
@@ -23,11 +24,15 @@ namespace IGTradeManager.UI
         public static void SetupContainer()
         {
             Container.RegisterSingleton<IDataCache, DataCache>();
+            Container.RegisterSingleton<IRiskMetrics, RiskMetrics>();
+            Container.RegisterSingleton<IAccountDataCache, AccountDataCache>();
             Container.RegisterSingleton<IDataAccess, DataAccess>();
+            Container.RegisterSingleton<IFactory, Factory>();
 
             Container.RegisterSingleton<IMarketUpdateSubscription, MarketUpdateSubscription>();
             Container.RegisterSingleton<IAccountUpdateSubscription, AccountUpdateSubscription>();
             Container.RegisterSingleton<ITradeUpdateSubscription, TradeUpdateSubscription>();
+            Container.RegisterSingleton<IHeartbeatUpdateSubscription, HeartbeatUpdateSubscription>();
 
             Container.RegisterSingleton<IOrdersService, OrdersService>();          
             Container.RegisterSingleton<IAccountService, AccountService>();

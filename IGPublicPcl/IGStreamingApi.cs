@@ -462,6 +462,17 @@ namespace IGPublicPcl
                 });
         }
 
+        public SubscribedTableKey subscribeToHeartbeatTradeSubscription(IHandyTableListener tableListener)
+        {
+            ExtendedTableInfo extTableInfo = new ExtendedTableInfo(
+                new string[] { "TRADE:HB.U.HEARTBEAT.IP" },
+                "MERGE",
+                new string[] { "HEARTBEAT" },
+                true
+                );
+            return lsClient.SubscribeTable(extTableInfo, tableListener, false);
+        }
+
         /// <summary>
         /// trade subscription details
         /// </summary>

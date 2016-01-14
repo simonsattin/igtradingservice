@@ -1,10 +1,9 @@
-﻿using IGPublicPcl;
+﻿using dto.endpoint.confirms;
+using IGPublicPcl;
+using IGTradeManager.UI.Model;
 using Lightstreamer.DotNet.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IGTradeManager.UI.Modules.IgLightStreamerSubscriptions
 {
@@ -18,6 +17,23 @@ namespace IGTradeManager.UI.Modules.IgLightStreamerSubscriptions
             var handler = TradeSubscriptionUpdate;
             if (handler != null)
             {
+                var confirms = update.GetNewValue("CONFIRMS");
+                if (!string.IsNullOrEmpty(confirms))
+                {
+                    var confirmsResponse = JsonConvert.DeserializeObject<ConfirmsResponse>(confirms);
+                }
+
+                var opu = update.GetNewValue("OPU");
+                if (!string.IsNullOrEmpty(opu))
+                {
+                    var openPositionUpdate = JsonConvert.DeserializeObject<IGOpenPositionUpdate>(opu);                    
+                }
+
+                var wou = update.GetNewValue("WOU");
+                if (!string.IsNullOrEmpty(wou))
+                {
+
+                }
             }   
 
             base.OnUpdate(itemPos, itemName, update);

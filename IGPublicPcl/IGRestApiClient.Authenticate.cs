@@ -37,7 +37,7 @@ namespace IGPublicPcl
 	{
 		private ConversationContext _conversationContext;
 
-		private IgRestService _igRestService = new IgRestService();       
+		private IgRestService _igRestService = new IgRestService("demo-api");       
 
         private EncryptionKeyResponse ekr { get; set; }
 

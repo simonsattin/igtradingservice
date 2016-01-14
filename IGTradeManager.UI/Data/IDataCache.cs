@@ -10,20 +10,12 @@ namespace IGTradeManager.UI.Data
 {
     public interface IDataCache : INotifyPropertyChanged
     {
-        void Reset();
-
-        decimal SpreadToApply { get; set; }
-        decimal RiskPerTrade { get; set; }
+        void Reset();        
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
         BindingList<IgWorkingOrder> IgWorkingOrders { get; }
         BindingList<IgOpenPosition> IgOpenPositions { get; }
 
-        string AccountId { get; set; }
-        string AccountName { get; set; }
-        decimal? Balance { get; set; }
-        decimal? ProfitAndLoss { get; set; }
-        decimal? Deposit { get; set; }
-        decimal? Available { get; set; }
+        DateTime HeartbeatUpdate { get; set; }        
     }
 }

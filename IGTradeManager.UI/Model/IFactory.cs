@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IGTradeManager.UI.Modules
+namespace IGTradeManager.UI.Model
 {
-    public class TradeSubscriptionUpdateEventArgs : EventArgs
+    public interface IFactory
     {
-
+        DatabaseOrder CreateDatabaseOrder();
     }
 }

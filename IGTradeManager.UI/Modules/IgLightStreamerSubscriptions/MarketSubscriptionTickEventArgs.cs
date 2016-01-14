@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IGTradeManager.UI.Modules
+namespace IGTradeManager.UI.Modules.IgLightStreamerSubscriptions
 {
     public class MarketSubscriptionTickEventArgs : EventArgs
     {

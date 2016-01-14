@@ -16,13 +16,15 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
         private readonly IDataCache _DataCache;
         private readonly IOrdersService _OrdersService;
         private readonly IAccountService _AccountService;
+        private readonly IFactory _Factory;
 
-        public NewDatabaseOrderViewModel(IDataAccess dataAccess, IDataCache dataCache, IOrdersService ordersService, IAccountService accountService)
+        public NewDatabaseOrderViewModel(IDataAccess dataAccess, IDataCache dataCache, IOrdersService ordersService, IAccountService accountService, IFactory factory)
         {
             _DataAccess = dataAccess;
             _DataCache = dataCache;
             _OrdersService = ordersService;
             _AccountService = accountService;
+            _Factory = factory;
         }
 
         private string _Name;
@@ -125,16 +127,14 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
 
         public void InsertDatabaseOrder()
         {
-            var order = new DatabaseOrder()
-            {
-                Name = Name.Trim(),
-                Ticker = Ticker.Trim(),
-                IgInstrument = IgInstrumentName.Trim(),
-                Expiry = Expiry.Trim(),
-                NextEarnings = NextEarnings,
-                BreakoutLevel = BreakoutLevel,
-                StopDistance = StopDistance
-            };
+            var order = _Factory.CreateDatabaseOrder();            
+            order.Name = Name.Trim();
+            order.Ticker = Ticker.Trim();
+            order.IgInstrument = IgInstrumentName.Trim();
+            order.Expiry = Expiry.Trim();
+            order.NextEarnings = NextEarnings;
+            order.BreakoutLevel = BreakoutLevel;
+            order.StopDistance = StopDistance;
 
             _OrdersService.InsertDatabaseOrder(order);
 

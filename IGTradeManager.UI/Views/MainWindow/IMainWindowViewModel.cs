@@ -16,20 +16,27 @@ namespace IGTradeManager.UI.Views.MainWindow
         void DeleteDatabaseOrder(DatabaseOrder order);
         void UpdateDatabaseOrder(DatabaseOrder order);
 
-        IDataCache DataCache { get; }
+        //IDataCache DataCache { get; }
+        //IAccountDataCache AccountDataCache { get; }
+
+        decimal? Equity { get; }
+        decimal? ProfitAndLoss { get; }
+        decimal? Funds { get; }
+        decimal? Margin { get; }
+
+        string AccountId { get; }
+        string AccountName { get; }        
+
+        DateTime HeartbeatUpdated { get; }
         bool LoggedIn { get; }
-        bool LoggedOut { get; }
-        string LogMessage { get; }
-        //string AccountId { get; }
-        //string AccountName { get; }
-        //decimal? Available { get;  }
-        //decimal? Deposit { get;  }
-        //decimal? Balance { get;  }
-        //decimal? ProfitAndLoss { get; }
-        decimal RiskPerTrade { get; set; }
+        bool LoggedOut { get; }     
+
+        decimal RiskPerTrade { get; set; }            
         decimal SpreadToApply { get; set; }
+        decimal MaxSpreadPercent { get; set; }
 
         BindingList<DatabaseOrder> DatabaseOrders { get; }
         BindingList<IgWorkingOrder> IgWorkingOrders { get; }
+        BindingList<IgOpenPosition> IgOpenPositions { get; }
     }
 }

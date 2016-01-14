@@ -126,6 +126,14 @@ namespace IGTradeManager.UI.Views.MainWindow
                 }
             }
 
+            if (senderGrid.Columns[e.ColumnIndex].HeaderText == "SpreadPercentOfRisk")
+            {
+                var order = _DatabaseOrdersGridView.Rows[e.RowIndex].DataBoundItem as DatabaseOrder;
+
+                e.CellStyle.BackColor = (order.IsSpreadPercentOfRiskWithinParamter) ? Color.Green : Color.Red;
+                return;
+            }
+
             if (senderGrid.Columns[e.ColumnIndex].Name == "ChangePercent")
             {
                 var order = _DatabaseOrdersGridView.Rows[e.RowIndex].DataBoundItem as DatabaseOrder;

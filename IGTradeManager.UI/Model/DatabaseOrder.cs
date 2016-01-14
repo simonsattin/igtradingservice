@@ -1,4 +1,5 @@
 ﻿using IGTradeManager.UI.Data;
+using IGTradeManager.UI.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +10,15 @@ namespace IGTradeManager.UI.Model
 {
     public class DatabaseOrder : DependancyObject
     {
-        public DatabaseOrder()
+        private readonly IRiskMetrics _RiskMetrics;
+
+        public DatabaseOrder(IRiskMetrics riskMetrics)
         {
+            _RiskMetrics = riskMetrics;
+
+            _RiskMetrics.PropertyChanged += _RiskMetrics_PropertyChanged;
             PropertyChanged += DatabaseOrder_PropertyChanged;
         }        
-
-        private decimal _SpreadToApply;
-        public decimal SpreadToApply
-        {
-            get { return _SpreadToApply; }
-            set
-            {
-                if (_SpreadToApply != value)
-                {
-                    _SpreadToApply = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private decimal _RiskPerTrade;
-        public decimal RiskPerTrade
-        {
-            get { return _RiskPerTrade; }
-            set
-            {
-                if (_RiskPerTrade != value)
-                {
-                    _RiskPerTrade = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
 
         private int _Id;
         public int Id
@@ -280,9 +258,41 @@ namespace IGTradeManager.UI.Model
             }
         }
 
+        private bool _IsSpreadPercentOfRiskWithinParamter;
+        public bool IsSpreadPercentOfRiskWithinParamter
+        {
+            get { return _IsSpreadPercentOfRiskWithinParamter; }
+            set
+            {
+                if (_IsSpreadPercentOfRiskWithinParamter != value)
+                {
+                    _IsSpreadPercentOfRiskWithinParamter = value;
+                    OnPropertyChanged();
+                }
+            }
+        }        
+
+        private void _RiskMetrics_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "SpreadToApply")
+            {
+                CalculateEntryLevel();
+            }
+
+            if (e.PropertyName == "RiskPerTrade")
+            {
+                CalculatePositionSize();
+            }
+
+            if (e.PropertyName == "MaxSpreadPercent")
+            {
+                DetermineIsSpreadPercentWithinParameter();
+            }
+        }
+
         private void DatabaseOrder_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "SpreadToApply" || e.PropertyName == "Bid" || e.PropertyName == "Ask" || e.PropertyName == "BreakoutLevel")
+            if (e.PropertyName == "Bid" || e.PropertyName == "Ask" || e.PropertyName == "BreakoutLevel")
             {
                 CalculateEntryLevel();
             }
@@ -292,16 +302,26 @@ namespace IGTradeManager.UI.Model
                 CalculatePercentFromEntry();
             }
 
-            if (e.PropertyName == "RiskPerTrade" || e.PropertyName == "StopDistance")
+            if (e.PropertyName == "StopDistance")
             {
                 CalculatePositionSize();
             }
 
             if (e.PropertyName == "Bid" || e.PropertyName == "Ask" || e.PropertyName == "StopDistance")
             {
-                CalcualteSpreadAsPercentageOfRisk();
+                CalcualteSpreadAsPercentageOfRisk();               
             }
-        }
+
+            if (e.PropertyName == "SpreadPercentOfRisk")
+            {
+                DetermineIsSpreadPercentWithinParameter();
+            }
+        }  
+        
+        private void DetermineIsSpreadPercentWithinParameter()
+        {
+            IsSpreadPercentOfRiskWithinParamter = SpreadPercentOfRisk < _RiskMetrics.MaxSpreadPercent;
+        }    
 
         private void CalculatePercentFromEntry()
         {
@@ -313,17 +333,17 @@ namespace IGTradeManager.UI.Model
 
         private void CalculateEntryLevel()
         {
-            if (Bid > 0 && Ask > 0 && SpreadToApply > 0)
+            if (Bid > 0 && Ask > 0 && _RiskMetrics.SpreadToApply > 0)
             {
-                EntryLevel = ((Ask - Bid) * (SpreadToApply/100)) + BreakoutLevel;
+                EntryLevel = ((Ask - Bid) * (_RiskMetrics.SpreadToApply / 100)) + BreakoutLevel;
             }
         }
 
         private void CalculatePositionSize()
         {
-            if (RiskPerTrade > 0 && StopDistance > 0)
+            if (_RiskMetrics.RiskPerTrade > 0 && StopDistance > 0)
             {
-                PositionSize = Math.Round(RiskPerTrade / StopDistance, 1);
+                PositionSize = Math.Round(_RiskMetrics.RiskPerTrade / StopDistance, 1);
             }
         }
 
@@ -331,7 +351,7 @@ namespace IGTradeManager.UI.Model
         {
             if (Bid > 0 && Ask > 0 && StopDistance > 0)
             {
-                SpreadPercentOfRisk = Math.Round((Ask - Bid) / StopDistance, 2);
+                SpreadPercentOfRisk = (Math.Round((Ask - Bid) / StopDistance, 2)) * 100;
             }
         }
 

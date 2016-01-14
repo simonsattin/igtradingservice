@@ -46,6 +46,10 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
@@ -77,28 +81,39 @@
       <DependentUpon>BaseUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ContainerProvider.cs" />
+    <Compile Include="Data\AccountDataCache.cs" />
     <Compile Include="Data\DataAccess\DataAccess.cs" />
     <Compile Include="Data\DataAccess\IDataAccess.cs" />
     <Compile Include="Data\DataCache.cs" />
+    <Compile Include="Data\IAccountDataCache.cs" />
     <Compile Include="Data\IDataCache.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="DependencyObject.cs" />
     <Compile Include="Model\DatabaseOrder.cs" />
+    <Compile Include="Model\Factory.cs" />
+    <Compile Include="Model\IFactory.cs" />
     <Compile Include="Model\IgOpenPosition.cs" />
     <Compile Include="Model\IgWorkingOrder.cs" />
+    <Compile Include="Model\IGOpenPositionUpdate.cs" />
+    <Compile Include="Model\IGWorkingOrderUpdate.cs" />
     <Compile Include="Modules\AccountService.cs" />
-    <Compile Include="Modules\AccountSubscriptionUpdateEventArgs.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\AccountSubscriptionUpdateEventArgs.cs" />
     <Compile Include="Modules\IAccountService.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\AccountUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\HeartbeatUpdateEventArgs.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\HeartbeatUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\IAccountUpdateSubscription.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\IHeartbeatUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\IMarketUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\ITradeUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\MarketUpdateSubscription.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\TradeUpdateSubscription.cs" />
     <Compile Include="Modules\IOrdersService.cs" />
-    <Compile Include="Modules\MarketSubscriptionTickEventArgs.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\MarketSubscriptionTickEventArgs.cs" />
+    <Compile Include="Modules\IRiskMetrics.cs" />
     <Compile Include="Modules\OrdersService.cs" />
-    <Compile Include="Modules\TradeSubscriptionUpdateEventArgs.cs" />
+    <Compile Include="Modules\IgLightStreamerSubscriptions\TradeSubscriptionUpdateEventArgs.cs" />
+    <Compile Include="Modules\RiskMetrics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadSafeBindingSource.cs">

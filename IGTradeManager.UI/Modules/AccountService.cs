@@ -16,32 +16,50 @@ namespace IGTradeManager.UI.Modules
     {
         private readonly IGStreamingApiClient _StreamClient;
         private readonly IgRestApiClient _IGApi;
-        private readonly IDataCache _DataCache;
         private AuthenticationResponse _LastResponse;
+
+        private readonly IDataCache _DataCache;
+        private readonly IAccountDataCache _AccountDataCache;
         private readonly IMarketUpdateSubscription _MarketSubscription;
         private readonly IAccountUpdateSubscription _AccountUpdateSubscription;
         private readonly ITradeUpdateSubscription _TradeUpdateSubscription;
+        private readonly IHeartbeatUpdateSubscription _HeartbeatUpdateSubscription;
 
-        public AccountService(IDataCache dataCache, IMarketUpdateSubscription marketSubscription, IAccountUpdateSubscription accountUpdateSubscription,
-            ITradeUpdateSubscription tradeUpdateSubscription)
+        public AccountService(IDataCache dataCache, IAccountDataCache accountDataCache, IMarketUpdateSubscription marketSubscription, 
+            IAccountUpdateSubscription accountUpdateSubscription, ITradeUpdateSubscription tradeUpdateSubscription, IHeartbeatUpdateSubscription heartbeatUpdateSubscription)
         {
             _IGApi = new IgRestApiClient();
             _StreamClient = new IGStreamingApiClient();
+
             _DataCache = dataCache;
+            _AccountDataCache = accountDataCache;
             _MarketSubscription = marketSubscription;
             _AccountUpdateSubscription = accountUpdateSubscription;
             _TradeUpdateSubscription = tradeUpdateSubscription;
+            _HeartbeatUpdateSubscription = heartbeatUpdateSubscription;
 
             _MarketSubscription.MarketSubscriptionTick += _MarketSubscription_MarketSubscriptionTick;
             _AccountUpdateSubscription.AccountSubscriptionUpdate += _AccountUpdateSubscription_AccountSubscriptionUpdate;
+            _TradeUpdateSubscription.TradeSubscriptionUpdate += _TradeUpdateSubscription_TradeSubscriptionUpdate;
+            _HeartbeatUpdateSubscription.HeartbeatUpdate += _HeartbeatUpdateSubscription_HeartbeatUpdate;            
+        }
+
+        private void _HeartbeatUpdateSubscription_HeartbeatUpdate(HeartbeatUpdateEventArgs e)
+        {
+            _DataCache.HeartbeatUpdate = e.HeartbeatLastUpdated;
+        }
+
+        private void _TradeUpdateSubscription_TradeSubscriptionUpdate(TradeSubscriptionUpdateEventArgs e)
+        {
+            
         }
 
         private void _AccountUpdateSubscription_AccountSubscriptionUpdate(AccountSubscriptionUpdateEventArgs e)
         {
-            _DataCache.ProfitAndLoss = e.PNL;
-            _DataCache.Deposit = e.Deposit;
-            _DataCache.Available = e.AvailableCash;
-            _DataCache.Balance = e.Funds;           
+            _AccountDataCache.ProfitAndLoss = e.PNL;
+            _AccountDataCache.Margin = e.UsedMargin;
+            _AccountDataCache.Equity = e.Equity;
+            _AccountDataCache.Funds = e.Funds;           
         }
 
         private void _MarketSubscription_MarketSubscriptionTick(MarketSubscriptionTickEventArgs e)
@@ -72,12 +90,12 @@ namespace IGTradeManager.UI.Modules
                 return false;
 
             //get account details
-            _DataCache.AccountId = result.Response.accounts[0].accountId;
-            _DataCache.AccountName = result.Response.accounts[0].accountName;
-            _DataCache.Balance = result.Response.accountInfo.balance;
-            _DataCache.ProfitAndLoss = result.Response.accountInfo.profitLoss;
-            _DataCache.Deposit = result.Response.accountInfo.deposit;
-            _DataCache.Available = result.Response.accountInfo.available;                       
+            _AccountDataCache.AccountId = result.Response.accounts[0].accountId;
+            _AccountDataCache.AccountName = result.Response.accounts[0].accountName;
+            _AccountDataCache.Balance = result.Response.accountInfo.balance;
+            _AccountDataCache.ProfitAndLoss = result.Response.accountInfo.profitLoss;
+            _AccountDataCache.Deposit = result.Response.accountInfo.deposit;
+            _AccountDataCache.Available = result.Response.accountInfo.available;                       
 
             return true;
         }
@@ -91,6 +109,22 @@ namespace IGTradeManager.UI.Modules
                 _DataCache.IgWorkingOrders.Add(new IgWorkingOrder()
                 {
                     Epic = item.marketData.epic,
+                    InstrumentName = item.marketData.instrumentName,
+                    Expiry = item.marketData.expiry,
+                    MarketStatus = item.marketData.marketStatus,
+                    InstrumentType = item.marketData.instrumentType,
+                    LotSize = item.marketData.lotSize,
+                    High = item.marketData.high,
+                    Low = item.marketData.low,
+                    PercentageChange = item.marketData.percentageChange,
+                    NetChange = item.marketData.netChange,
+                    Bid = item.marketData.bid,
+                    Offer = item.marketData.offer,
+                    UpdateTime = item.marketData.updateTime,
+                    DelayTime = item.marketData.delayTime,
+                    StreamingPricesAvailable = item.marketData.streamingPricesAvailable,
+                    ScalingFactor = item.marketData.scalingFactor,
+
                     DealId = item.workingOrderData.dealId,
                     Direction = item.workingOrderData.direction,
                     OrderSize = item.workingOrderData.orderSize,
@@ -103,22 +137,48 @@ namespace IGTradeManager.UI.Modules
                     StopDistance = item.workingOrderData.stopDistance,
                     LimitDistance = item.workingOrderData.limitDistance,
                     CurrencyCode = item.workingOrderData.currencyCode,
-                    InstrumentName = item.marketData.instrumentName,
-                    Expiry = item.marketData.expiry,
-                    MarketStatus = item.marketData.marketStatus
+                    DMA = item.workingOrderData.dma              
                 });
             }
         }
 
-        public void LoadIgOpenPositions()
+        public void LoadOpenPositions()
         {
             var openPositions = _IGApi.getOTCOpenPositionsV2().Result.Response.positions;
 
             foreach (var position in openPositions)
-            {                
+            {                                                                 
                 _DataCache.IgOpenPositions.Add(new IgOpenPosition()
                 {
+                    Epic = position.market.epic,
+                    InstrumentName = position.market.instrumentName,
+                    Expiry = position.market.expiry,
+                    MarketStatus = position.market.marketStatus,
+                    InstrumentType = position.market.instrumentType,
+                    LotSize = position.market.lotSize,
+                    High = position.market.high,
+                    Low  = position.market.low,
+                    PercentageChange = position.market.percentageChange,
+                    NetChange = position.market.netChange,
+                    Bid = position.market.bid,
+                    Offer = position.market.offer,
+                    UpdateTime = position.market.updateTime,
+                    DelayTime = position.market.delayTime,
+                    StreamingPricesAvailable = position.market.streamingPricesAvailable,
+                    ScalingFactor = position.market.scalingFactor,
                     
+                    ContractSize = position.position.contractSize,
+                    CreatedDate = position.position.createdDate,
+                    DealId = position.position.dealId,
+                    Size = position.position.size,
+                    Direction = position.position.direction,
+                    LimitLevel = position.position.limitLevel,
+                    Level = position.position.level,
+                    Currency = position.position.currency,
+                    ControlledRisk = position.position.controlledRisk,
+                    StopLevel = position.position.stopLevel,
+                    TrailingStep = position.position.trailingStep,
+                    TrailingStopDistance = position.position.trailingStopDistance
                 });
             }
         }
@@ -138,7 +198,14 @@ namespace IGTradeManager.UI.Modules
                 return false;
             }
 
+            //account updates
             _StreamClient.subscribeToAccountDetails(_LastResponse.currentAccountId, _AccountUpdateSubscription);
+
+            //heartbeat
+            _StreamClient.subscribeToHeartbeatTradeSubscription(_HeartbeatUpdateSubscription);
+
+            //trade - positions/orders/confirms updates
+            _StreamClient.subscribeToTradeSubscription(_LastResponse.currentAccountId, _TradeUpdateSubscription);
 
             return true;
         }
@@ -150,7 +217,7 @@ namespace IGTradeManager.UI.Modules
 
         public void Logout()
         {
-            _IGApi.logout();
+            //_IGApi.logout();
 
             _StreamClient.disconnect();
         }
