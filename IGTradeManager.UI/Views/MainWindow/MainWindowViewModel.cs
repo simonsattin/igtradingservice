@@ -57,6 +57,9 @@ namespace IGTradeManager.UI.Views.MainWindow
             LogMessage = "Getting database orders...";
             _OrdersService.LoadDatabaseOrders();
 
+            LogMessage = "Getting Market Details for database orders...";
+            _AccountService.FillMinimumDealSizeForDatabaseOrders();
+
             LogMessage = "Subscribe tickers for market details...";
             foreach (var order in _DataCache.DatabaseOrders)
             {

@@ -15,5 +15,7 @@ namespace IGTradeManager.UI.Modules
         void LoadOpenPositions();
         bool ConnectToLightStreamer();
         void SubscribeDatabaseOrderToMarketListener(DatabaseOrder order);
+        decimal? GetMinimumDealSizeForEpic(string epic);
+        void FillMinimumDealSizeForDatabaseOrders();
     }
 }

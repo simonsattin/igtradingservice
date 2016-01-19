@@ -118,6 +118,20 @@ namespace IGTradeManager.UI.Model
             }
         }
 
+        private decimal? _MinimumDealSize;
+        public decimal? MinimumDealSize
+        {
+            get { return _MinimumDealSize; }
+            set
+            {
+                if (_MinimumDealSize != value)
+                {
+                    _MinimumDealSize = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private decimal _BreakoutLevel;
         public decimal BreakoutLevel
         {
@@ -270,7 +284,35 @@ namespace IGTradeManager.UI.Model
                     OnPropertyChanged();
                 }
             }
-        }        
+        }
+
+        private bool _IsPositionSizeAboveMinimumDealSize;
+        public bool IsPositionSizeBelowMinimumDealSize
+        {
+            get { return _IsPositionSizeAboveMinimumDealSize; }
+            set
+            {
+                if (_IsPositionSizeAboveMinimumDealSize != value)
+                {
+                    _IsPositionSizeAboveMinimumDealSize = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _IsValidForWorkingOrder;
+        public bool IsValidForWorkingOrder
+        {
+            get { return _IsValidForWorkingOrder; }
+            set
+            {
+                if (_IsValidForWorkingOrder != value)
+                {
+                    _IsValidForWorkingOrder = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private void _RiskMetrics_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -292,12 +334,28 @@ namespace IGTradeManager.UI.Model
 
         private void DatabaseOrder_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Bid" || e.PropertyName == "Ask" || e.PropertyName == "BreakoutLevel")
+            if (e.PropertyName == "Bid")
+            {
+                CalculateEntryLevel();
+
+                CalcualteSpreadAsPercentageOfRisk();
+            }
+
+            if (e.PropertyName == "Ask")
+            {
+                CalculateEntryLevel();
+
+                CalculatePercentFromEntry();
+
+                CalcualteSpreadAsPercentageOfRisk();
+            }
+
+            if (e.PropertyName == "BreakoutLevel")
             {
                 CalculateEntryLevel();
             }
 
-            if (e.PropertyName == "EntryLevel" || e.PropertyName == "Ask")
+            if (e.PropertyName == "EntryLevel")
             {
                 CalculatePercentFromEntry();
             }
@@ -305,23 +363,73 @@ namespace IGTradeManager.UI.Model
             if (e.PropertyName == "StopDistance")
             {
                 CalculatePositionSize();
-            }
 
-            if (e.PropertyName == "Bid" || e.PropertyName == "Ask" || e.PropertyName == "StopDistance")
-            {
-                CalcualteSpreadAsPercentageOfRisk();               
+                CalcualteSpreadAsPercentageOfRisk();
             }
 
             if (e.PropertyName == "SpreadPercentOfRisk")
             {
                 DetermineIsSpreadPercentWithinParameter();
             }
+
+            if (e.PropertyName == "PositionSize")
+            {
+                DetermineIsPositionSizeBelowMinimumDealSize();
+            }
+
+            if (e.PropertyName == "MinimumDealSize")
+            {
+                DetermineIsPositionSizeBelowMinimumDealSize();
+            }
+
+            if (e.PropertyName == "IsSpreadPercentOfRiskWithinParamter")
+            {
+                DetermineIsValidForWorkingOrder();
+            }
+
+            if (e.PropertyName == "IsPositionSizeBelowMinimumDealSize")
+            {
+                DetermineIsValidForWorkingOrder();
+            }
+
+            if (e.PropertyName == "PercentFromEntry")
+            {
+                DetermineIsValidForWorkingOrder();
+            }
         }  
         
         private void DetermineIsSpreadPercentWithinParameter()
         {
             IsSpreadPercentOfRiskWithinParamter = SpreadPercentOfRisk < _RiskMetrics.MaxSpreadPercent;
-        }    
+        }
+
+        private void DetermineIsPositionSizeBelowMinimumDealSize()
+        {
+            IsPositionSizeBelowMinimumDealSize = PositionSize < MinimumDealSize;
+        }
+
+        private void DetermineIsValidForWorkingOrder()
+        {
+            if (IsPositionSizeBelowMinimumDealSize)
+            {
+                IsValidForWorkingOrder = false;
+                return;
+            }
+
+            if (!IsSpreadPercentOfRiskWithinParamter)
+            {
+                IsValidForWorkingOrder = false;
+                return;
+            }
+
+            if (PercentFromEntry > 0 || PercentFromEntry < -5)
+            {
+                IsValidForWorkingOrder = false;
+                return;
+            }
+
+            IsValidForWorkingOrder = true;
+        }
 
         private void CalculatePercentFromEntry()
         {

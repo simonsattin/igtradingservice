@@ -97,6 +97,8 @@
     <Compile Include="Model\IGOpenPositionUpdate.cs" />
     <Compile Include="Model\IGWorkingOrderUpdate.cs" />
     <Compile Include="Modules\AccountService.cs" />
+    <Compile Include="Modules\DatabaseOrderReadyForWorkingOrderListener.cs" />
+    <Compile Include="Modules\IDatabaseOrderReadyForWorkingOrderListener.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\AccountSubscriptionUpdateEventArgs.cs" />
     <Compile Include="Modules\IAccountService.cs" />
     <Compile Include="Modules\IgLightStreamerSubscriptions\AccountUpdateSubscription.cs" />

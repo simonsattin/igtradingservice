@@ -38,6 +38,7 @@ namespace IGTradeManager.UI
             Container.RegisterSingleton<IAccountService, AccountService>();
             Container.RegisterSingleton<IMainWindowViewModel, MainWindowViewModel>();
             Container.RegisterSingleton<INewDatabaseOrderViewModel, NewDatabaseOrderViewModel>();
+            Container.RegisterSingleton<IDatabaseOrderReadyForWorkingOrderListener, DatabaseOrderReadyForWorkingOrderListener>();
             
             Container.Verify();
         }

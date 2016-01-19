@@ -16,7 +16,7 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
         private readonly IDataCache _DataCache;
         private readonly IOrdersService _OrdersService;
         private readonly IAccountService _AccountService;
-        private readonly IFactory _Factory;
+        private readonly IFactory _Factory;        
 
         public NewDatabaseOrderViewModel(IDataAccess dataAccess, IDataCache dataCache, IOrdersService ordersService, IAccountService accountService, IFactory factory)
         {
@@ -137,6 +137,8 @@ namespace IGTradeManager.UI.Views.NewDatabaseOrder
             order.StopDistance = StopDistance;
 
             _OrdersService.InsertDatabaseOrder(order);
+
+            order.MinimumDealSize = _AccountService.GetMinimumDealSizeForEpic(order.IgInstrument);
 
             _AccountService.SubscribeDatabaseOrderToMarketListener(order);         
         }

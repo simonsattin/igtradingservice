@@ -142,6 +142,17 @@ namespace IGTradeManager.UI.Modules
             }
         }
 
+        public decimal? GetMinimumDealSizeForEpic(string epic)
+        {
+            var response = _IGApi.marketDetailsV2(epic);
+            var result = response.Result;         
+
+            if (result == null || result.Response == null || result.StatusCode != System.Net.HttpStatusCode.OK)
+                return null;
+
+            return result.Response.dealingRules.minDealSize.value;
+        }
+
         public void LoadOpenPositions()
         {
             var openPositions = _IGApi.getOTCOpenPositionsV2().Result.Response.positions;
@@ -180,6 +191,16 @@ namespace IGTradeManager.UI.Modules
                     TrailingStep = position.position.trailingStep,
                     TrailingStopDistance = position.position.trailingStopDistance
                 });
+            }
+        }
+
+        public void FillMinimumDealSizeForDatabaseOrders()
+        {
+            foreach (var order in _DataCache.DatabaseOrders)
+            {
+                var minimumdealsize = GetMinimumDealSizeForEpic(order.IgInstrument);
+
+                order.MinimumDealSize = minimumdealsize;
             }
         }
 
