@@ -1,4 +1,5 @@
 ﻿using dto.colibri.endpoint.auth.v2;
+using dto.endpoint.workingorders.create.v2;
 using IGPublicPcl;
 using IGTradeManager.UI.Data;
 using IGTradeManager.UI.Model;
@@ -46,11 +47,16 @@ namespace IGTradeManager.UI.Modules
 
         private void _HeartbeatUpdateSubscription_HeartbeatUpdate(HeartbeatUpdateEventArgs e)
         {
-            _DataCache.HeartbeatUpdate = e.HeartbeatLastUpdated;
+            //_DataCache.HeartbeatUpdate = e.HeartbeatLastUpdated;
         }
 
         private void _TradeUpdateSubscription_TradeSubscriptionUpdate(TradeSubscriptionUpdateEventArgs e)
         {
+            if (e.IGWorkingOrderUpdate != null)
+            {
+                LoadWorkingOrders();
+            }
+
             
         }
 
@@ -100,9 +106,33 @@ namespace IGTradeManager.UI.Modules
             return true;
         }
 
+        public void CreateWorkingOrder(DatabaseOrder order)
+        {
+            CreateWorkingOrderRequest orderRequest = new CreateWorkingOrderRequest()
+            {
+                epic = order.IgInstrument,
+                expiry = order.Expiry,
+                direction = "BUY",
+                size = order.PositionSize,
+                level = order.EntryLevel,
+                type = "STOP",
+                currencyCode = "GBP",
+                timeInForce = "GOOD_TILL_DATE",
+                goodTillDate = DateTime.Today.ToString("yyyy/MM/dd 23:59:59"),
+                guaranteedStop = false,
+                stopDistance = order.StopDistance,
+            };
+
+            var response = _IGApi.createWorkingOrderV2(orderRequest);
+
+            Console.WriteLine(string.Format("DealReference: {0}", response.Result.Response.dealReference));         
+        }
+
         public void LoadWorkingOrders()
         {
             var currentIGWorkingOrders = _IGApi.workingOrdersV2().Result.Response.workingOrders;
+
+            _DataCache.IgWorkingOrders.Clear();
 
             foreach (var item in currentIGWorkingOrders)
             {

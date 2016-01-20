@@ -17,23 +17,27 @@ namespace IGTradeManager.UI.Modules.IgLightStreamerSubscriptions
             var handler = TradeSubscriptionUpdate;
             if (handler != null)
             {
+                var eventargs = new TradeSubscriptionUpdateEventArgs();
+
                 var confirms = update.GetNewValue("CONFIRMS");
                 if (!string.IsNullOrEmpty(confirms))
                 {
-                    var confirmsResponse = JsonConvert.DeserializeObject<ConfirmsResponse>(confirms);
+                    eventargs.ConfirmsResponse = JsonConvert.DeserializeObject<ConfirmsResponse>(confirms);
                 }
 
                 var opu = update.GetNewValue("OPU");
                 if (!string.IsNullOrEmpty(opu))
                 {
-                    var openPositionUpdate = JsonConvert.DeserializeObject<IGOpenPositionUpdate>(opu);                    
+                    eventargs.IGOpenPositionUpdate = JsonConvert.DeserializeObject<IGOpenPositionUpdate>(opu);                    
                 }
 
                 var wou = update.GetNewValue("WOU");
                 if (!string.IsNullOrEmpty(wou))
-                {
-
+                {                    
+                    eventargs.IGWorkingOrderUpdate = JsonConvert.DeserializeObject<IGWorkingOrderUpdate>(wou);
                 }
+
+                handler(eventargs);
             }   
 
             base.OnUpdate(itemPos, itemName, update);

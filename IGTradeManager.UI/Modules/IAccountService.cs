@@ -17,5 +17,6 @@ namespace IGTradeManager.UI.Modules
         void SubscribeDatabaseOrderToMarketListener(DatabaseOrder order);
         decimal? GetMinimumDealSizeForEpic(string epic);
         void FillMinimumDealSizeForDatabaseOrders();
+        void CreateWorkingOrder(DatabaseOrder order);
     }
 }

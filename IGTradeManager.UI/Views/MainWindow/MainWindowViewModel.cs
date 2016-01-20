@@ -31,6 +31,7 @@ namespace IGTradeManager.UI.Views.MainWindow
             PropertyChanged += MainWindowViewModel_PropertyChanged;
             _RiskMetrics.PropertyChanged += _RiskMetrics_PropertyChanged;
             _DataCache.PropertyChanged += _DataCache_PropertyChanged;
+            _AccountDataCache.PropertyChanged += _AccountDataCache_PropertyChanged;
 
             LoggedOut = true;
         }        
@@ -116,36 +117,89 @@ namespace IGTradeManager.UI.Views.MainWindow
             }
         }
 
+        private decimal? _Equity;
         public decimal? Equity
         {
-            get { return _AccountDataCache.Equity; }
+            get { return _Equity; }
+            set
+            {
+                if (_Equity != value)
+                {
+                    _Equity = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
+        private decimal? _ProfitAndLoss;
         public decimal? ProfitAndLoss
         {
-            get { return _AccountDataCache.ProfitAndLoss; }
+            get { return _ProfitAndLoss; }
+            set
+            {
+                if (_ProfitAndLoss != value)
+                {
+                    _ProfitAndLoss = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
+        private decimal? _Funds;
         public decimal? Funds
         {
-            get { return _AccountDataCache.Funds; }
+            get { return _Funds; }
+            set
+            {
+                if (_Funds != value)
+                {
+                    _Funds = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
+        private decimal? _Margin;
         public decimal? Margin
         {
-            get { return _AccountDataCache.Margin; }
-        }    
-        
-        public string AccountId
-        {
-            get { return _AccountDataCache.AccountId; }
-        } 
-
-        public string AccountName
-        {
-            get { return _AccountDataCache.AccountName; }
+            get { return _Margin; }
+            set
+            {
+                if (_Margin != value)
+                {
+                    _Margin = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
+        private string _AccountId;
+        public string AccountId
+        {
+            get { return _AccountId; }
+            set
+            {
+                if (_AccountId != value)
+                {
+                    _AccountId = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _AccountName;
+        public string AccountName
+        {
+            get { return _AccountName; }
+            set
+            {
+                if (_AccountName != value)
+                {
+                    _AccountName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private DateTime _HeartbeatUpdated;
         public DateTime HeartbeatUpdated
@@ -159,8 +213,7 @@ namespace IGTradeManager.UI.Views.MainWindow
                     OnPropertyChanged();
                 }
             }
-        }        
-
+        }
 
         private bool _LoggedIn;
         public bool LoggedIn
@@ -243,6 +296,29 @@ namespace IGTradeManager.UI.Views.MainWindow
                     _MaxSpreadPercent = value;
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        private void _AccountDataCache_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ProfitAndLoss")
+            {
+                ProfitAndLoss = _AccountDataCache.ProfitAndLoss;
+            }
+
+            if (e.PropertyName == "Funds")
+            {
+                Funds = _AccountDataCache.Funds;
+            }
+
+            if (e.PropertyName == "Equity")
+            {
+                Equity = _AccountDataCache.Equity;
+            }
+
+            if (e.PropertyName == "Margin")
+            {
+                ProfitAndLoss = _AccountDataCache.Margin;
             }
         }
 

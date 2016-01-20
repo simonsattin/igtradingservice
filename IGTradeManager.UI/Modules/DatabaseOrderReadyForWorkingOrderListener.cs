@@ -11,10 +11,12 @@ namespace IGTradeManager.UI.Modules
     public class DatabaseOrderReadyForWorkingOrderListener : IDatabaseOrderReadyForWorkingOrderListener
     {
         private readonly IDataCache _DataCache;
+        private readonly IAccountService _AccountService;
 
-        public DatabaseOrderReadyForWorkingOrderListener(IDataCache dataCache)
+        public DatabaseOrderReadyForWorkingOrderListener(IDataCache dataCache, IAccountService accountService)
         {
             _DataCache = dataCache;
+            _AccountService = accountService;
 
             _DataCache.DatabaseOrders.ListChanged += DatabaseOrders_ListChanged;
         }
@@ -35,6 +37,7 @@ namespace IGTradeManager.UI.Modules
                         if (correspondingWorkingOrder == null)
                         {
                             //create working order
+                            _AccountService.CreateWorkingOrder(changedorder);
                         }
                         else
                         {

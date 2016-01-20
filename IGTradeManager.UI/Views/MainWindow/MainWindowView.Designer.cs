@@ -62,6 +62,25 @@
             this._MarginLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this._DatabaseOrdersGridView = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.igInstrumentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nextEarningsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.breakoutLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stopDistanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.askDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangePercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.entryLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PercentFromEntry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinimumDealSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.positionSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastUpdateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deleteGridViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.databaseOrdersBindingSource = new IGTradeManager.UI.ThreadSafeBindingSource(this.components);
             this._IgWorkingOrdersDataView = new System.Windows.Forms.DataGridView();
             this.dealIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,25 +144,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this._MaxSpreadPercentNumeric = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tickerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.igInstrumentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextEarningsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.breakoutLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stopDistanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.askDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangePercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entryLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PercentFromEntry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinimumDealSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.positionSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastUpdateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deleteGridViewColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataContext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._DatabaseOrdersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseOrdersBindingSource)).BeginInit();
@@ -200,7 +200,7 @@
             // _AccountIdLabel
             // 
             this._AccountIdLabel.AutoSize = true;
-            this._AccountIdLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountId", true));
+            this._AccountIdLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AccountIdLabel.Location = new System.Drawing.Point(201, 193);
             this._AccountIdLabel.Name = "_AccountIdLabel";
             this._AccountIdLabel.Size = new System.Drawing.Size(93, 32);
@@ -220,7 +220,7 @@
             // _AccountNameLabel
             // 
             this._AccountNameLabel.AutoSize = true;
-            this._AccountNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountName", true));
+            this._AccountNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "AccountName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AccountNameLabel.Location = new System.Drawing.Point(575, 193);
             this._AccountNameLabel.Name = "_AccountNameLabel";
             this._AccountNameLabel.Size = new System.Drawing.Size(93, 32);
@@ -230,7 +230,7 @@
             // _EquityLabel
             // 
             this._EquityLabel.AutoSize = true;
-            this._EquityLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Equity", true));
+            this._EquityLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Equity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._EquityLabel.Location = new System.Drawing.Point(1041, 193);
             this._EquityLabel.Name = "_EquityLabel";
             this._EquityLabel.Size = new System.Drawing.Size(93, 32);
@@ -250,7 +250,7 @@
             // _ProfitAndLossLabel
             // 
             this._ProfitAndLossLabel.AutoSize = true;
-            this._ProfitAndLossLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "ProfitAndLoss", true));
+            this._ProfitAndLossLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "ProfitAndLoss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ProfitAndLossLabel.Location = new System.Drawing.Point(1422, 193);
             this._ProfitAndLossLabel.Name = "_ProfitAndLossLabel";
             this._ProfitAndLossLabel.Size = new System.Drawing.Size(93, 32);
@@ -321,7 +321,7 @@
             // _FundsLabel
             // 
             this._FundsLabel.AutoSize = true;
-            this._FundsLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Funds", true));
+            this._FundsLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Funds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._FundsLabel.Location = new System.Drawing.Point(1679, 193);
             this._FundsLabel.Name = "_FundsLabel";
             this._FundsLabel.Size = new System.Drawing.Size(93, 32);
@@ -341,7 +341,7 @@
             // _MarginLabel
             // 
             this._MarginLabel.AutoSize = true;
-            this._MarginLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Margin", true));
+            this._MarginLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "Margin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MarginLabel.Location = new System.Drawing.Point(1960, 193);
             this._MarginLabel.Name = "_MarginLabel";
             this._MarginLabel.Size = new System.Drawing.Size(93, 32);
@@ -392,11 +392,162 @@
             this._DatabaseOrdersGridView.Name = "_DatabaseOrdersGridView";
             this._DatabaseOrdersGridView.RowHeadersVisible = false;
             this._DatabaseOrdersGridView.RowTemplate.Height = 20;
-            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(778, 324);
+            this._DatabaseOrdersGridView.Size = new System.Drawing.Size(2307, 757);
             this._DatabaseOrdersGridView.TabIndex = 20;
             this._DatabaseOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellContentClick);
             this._DatabaseOrdersGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this._DatabaseOrdersGridView_CellFormatting);
             this._DatabaseOrdersGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this._DatabaseOrdersGridView_CellValueChanged);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // tickerDataGridViewTextBoxColumn
+            // 
+            this.tickerDataGridViewTextBoxColumn.DataPropertyName = "Ticker";
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.tickerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
+            this.tickerDataGridViewTextBoxColumn.Name = "tickerDataGridViewTextBoxColumn";
+            // 
+            // igInstrumentDataGridViewTextBoxColumn
+            // 
+            this.igInstrumentDataGridViewTextBoxColumn.DataPropertyName = "IgInstrument";
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.igInstrumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.igInstrumentDataGridViewTextBoxColumn.HeaderText = "IgInstrument";
+            this.igInstrumentDataGridViewTextBoxColumn.Name = "igInstrumentDataGridViewTextBoxColumn";
+            // 
+            // expiryDataGridViewTextBoxColumn
+            // 
+            this.expiryDataGridViewTextBoxColumn.DataPropertyName = "Expiry";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.expiryDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.expiryDataGridViewTextBoxColumn.HeaderText = "Expiry";
+            this.expiryDataGridViewTextBoxColumn.Name = "expiryDataGridViewTextBoxColumn";
+            // 
+            // nextEarningsDataGridViewTextBoxColumn
+            // 
+            this.nextEarningsDataGridViewTextBoxColumn.DataPropertyName = "NextEarnings";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.nextEarningsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.nextEarningsDataGridViewTextBoxColumn.HeaderText = "NextEarnings";
+            this.nextEarningsDataGridViewTextBoxColumn.Name = "nextEarningsDataGridViewTextBoxColumn";
+            // 
+            // breakoutLevelDataGridViewTextBoxColumn
+            // 
+            this.breakoutLevelDataGridViewTextBoxColumn.DataPropertyName = "BreakoutLevel";
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.breakoutLevelDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.breakoutLevelDataGridViewTextBoxColumn.HeaderText = "BreakoutLevel";
+            this.breakoutLevelDataGridViewTextBoxColumn.Name = "breakoutLevelDataGridViewTextBoxColumn";
+            // 
+            // stopDistanceDataGridViewTextBoxColumn
+            // 
+            this.stopDistanceDataGridViewTextBoxColumn.DataPropertyName = "StopDistance";
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.stopDistanceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.stopDistanceDataGridViewTextBoxColumn.HeaderText = "StopDistance";
+            this.stopDistanceDataGridViewTextBoxColumn.Name = "stopDistanceDataGridViewTextBoxColumn";
+            // 
+            // bidDataGridViewTextBoxColumn
+            // 
+            this.bidDataGridViewTextBoxColumn.DataPropertyName = "Bid";
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.bidDataGridViewTextBoxColumn.HeaderText = "Bid";
+            this.bidDataGridViewTextBoxColumn.Name = "bidDataGridViewTextBoxColumn";
+            this.bidDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // askDataGridViewTextBoxColumn
+            // 
+            this.askDataGridViewTextBoxColumn.DataPropertyName = "Ask";
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.askDataGridViewTextBoxColumn.HeaderText = "Ask";
+            this.askDataGridViewTextBoxColumn.Name = "askDataGridViewTextBoxColumn";
+            this.askDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ChangePercent
+            // 
+            this.ChangePercent.DataPropertyName = "ChangePercent";
+            this.ChangePercent.HeaderText = "ChangePercent";
+            this.ChangePercent.Name = "ChangePercent";
+            this.ChangePercent.ReadOnly = true;
+            // 
+            // entryLevelDataGridViewTextBoxColumn
+            // 
+            this.entryLevelDataGridViewTextBoxColumn.DataPropertyName = "EntryLevel";
+            this.entryLevelDataGridViewTextBoxColumn.HeaderText = "EntryLevel";
+            this.entryLevelDataGridViewTextBoxColumn.Name = "entryLevelDataGridViewTextBoxColumn";
+            this.entryLevelDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // PercentFromEntry
+            // 
+            this.PercentFromEntry.DataPropertyName = "PercentFromEntry";
+            this.PercentFromEntry.HeaderText = "Percent From Entry";
+            this.PercentFromEntry.Name = "PercentFromEntry";
+            this.PercentFromEntry.ReadOnly = true;
+            // 
+            // MinimumDealSize
+            // 
+            this.MinimumDealSize.DataPropertyName = "MinimumDealSize";
+            dataGridViewCellStyle10.Format = "N3";
+            dataGridViewCellStyle10.NullValue = null;
+            this.MinimumDealSize.DefaultCellStyle = dataGridViewCellStyle10;
+            this.MinimumDealSize.HeaderText = "MinimumDealSize";
+            this.MinimumDealSize.Name = "MinimumDealSize";
+            this.MinimumDealSize.ReadOnly = true;
+            // 
+            // positionSizeDataGridViewTextBoxColumn
+            // 
+            this.positionSizeDataGridViewTextBoxColumn.DataPropertyName = "PositionSize";
+            this.positionSizeDataGridViewTextBoxColumn.HeaderText = "PositionSize";
+            this.positionSizeDataGridViewTextBoxColumn.Name = "positionSizeDataGridViewTextBoxColumn";
+            this.positionSizeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // spreadPercentOfRiskDataGridViewTextBoxColumn
+            // 
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn.DataPropertyName = "SpreadPercentOfRisk";
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn.HeaderText = "SpreadPercentOfRisk";
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn.Name = "spreadPercentOfRiskDataGridViewTextBoxColumn";
+            this.spreadPercentOfRiskDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // LastUpdateTime
+            // 
+            this.LastUpdateTime.DataPropertyName = "LastUpdateTime";
+            dataGridViewCellStyle11.Format = "dd-MM-yy HH:mm:ss";
+            dataGridViewCellStyle11.NullValue = null;
+            this.LastUpdateTime.DefaultCellStyle = dataGridViewCellStyle11;
+            this.LastUpdateTime.HeaderText = "LastUpdateTime";
+            this.LastUpdateTime.Name = "LastUpdateTime";
+            this.LastUpdateTime.ReadOnly = true;
+            // 
+            // deleteGridViewColumn
+            // 
+            this.deleteGridViewColumn.HeaderText = "Delete";
+            this.deleteGridViewColumn.Name = "deleteGridViewColumn";
+            this.deleteGridViewColumn.Text = "Delete";
+            this.deleteGridViewColumn.UseColumnTextForButtonValue = true;
             // 
             // databaseOrdersBindingSource
             // 
@@ -561,7 +712,7 @@
             this._LogMessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._LogMessageLabel.AutoSize = true;
             this._LogMessageLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "LogMessage", true));
-            this._LogMessageLabel.Location = new System.Drawing.Point(698, 674);
+            this._LogMessageLabel.Location = new System.Drawing.Point(698, 1107);
             this._LogMessageLabel.Name = "_LogMessageLabel";
             this._LogMessageLabel.Size = new System.Drawing.Size(199, 32);
             this._LogMessageLabel.TabIndex = 24;
@@ -640,7 +791,7 @@
             this._Tabs.Location = new System.Drawing.Point(41, 263);
             this._Tabs.Name = "_Tabs";
             this._Tabs.SelectedIndex = 0;
-            this._Tabs.Size = new System.Drawing.Size(804, 388);
+            this._Tabs.Size = new System.Drawing.Size(2333, 821);
             this._Tabs.TabIndex = 31;
             // 
             // _DatabaseOrdersTabpage
@@ -649,7 +800,7 @@
             this._DatabaseOrdersTabpage.Location = new System.Drawing.Point(10, 48);
             this._DatabaseOrdersTabpage.Name = "_DatabaseOrdersTabpage";
             this._DatabaseOrdersTabpage.Padding = new System.Windows.Forms.Padding(3);
-            this._DatabaseOrdersTabpage.Size = new System.Drawing.Size(784, 330);
+            this._DatabaseOrdersTabpage.Size = new System.Drawing.Size(2313, 763);
             this._DatabaseOrdersTabpage.TabIndex = 0;
             this._DatabaseOrdersTabpage.Text = "Database Orders";
             this._DatabaseOrdersTabpage.UseVisualStyleBackColor = true;
@@ -898,8 +1049,8 @@
             // 
             this._HeartbeatUpdatedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._HeartbeatUpdatedLabel.AutoSize = true;
-            this._HeartbeatUpdatedLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "HeartbeatUpdated", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "G"));
-            this._HeartbeatUpdatedLabel.Location = new System.Drawing.Point(391, 674);
+            this._HeartbeatUpdatedLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.DataContext, "HeartbeatUpdated", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "G"));
+            this._HeartbeatUpdatedLabel.Location = new System.Drawing.Point(391, 1107);
             this._HeartbeatUpdatedLabel.Name = "_HeartbeatUpdatedLabel";
             this._HeartbeatUpdatedLabel.Size = new System.Drawing.Size(247, 32);
             this._HeartbeatUpdatedLabel.TabIndex = 32;
@@ -909,7 +1060,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(54, 673);
+            this.label11.Location = new System.Drawing.Point(54, 1106);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(312, 32);
             this.label11.TabIndex = 33;
@@ -943,162 +1094,11 @@
             this.label8.TabIndex = 34;
             this.label8.Text = "Max spread %:";
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.nameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // tickerDataGridViewTextBoxColumn
-            // 
-            this.tickerDataGridViewTextBoxColumn.DataPropertyName = "Ticker";
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.tickerDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tickerDataGridViewTextBoxColumn.HeaderText = "Ticker";
-            this.tickerDataGridViewTextBoxColumn.Name = "tickerDataGridViewTextBoxColumn";
-            // 
-            // igInstrumentDataGridViewTextBoxColumn
-            // 
-            this.igInstrumentDataGridViewTextBoxColumn.DataPropertyName = "IgInstrument";
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.igInstrumentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.igInstrumentDataGridViewTextBoxColumn.HeaderText = "IgInstrument";
-            this.igInstrumentDataGridViewTextBoxColumn.Name = "igInstrumentDataGridViewTextBoxColumn";
-            // 
-            // expiryDataGridViewTextBoxColumn
-            // 
-            this.expiryDataGridViewTextBoxColumn.DataPropertyName = "Expiry";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.expiryDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.expiryDataGridViewTextBoxColumn.HeaderText = "Expiry";
-            this.expiryDataGridViewTextBoxColumn.Name = "expiryDataGridViewTextBoxColumn";
-            // 
-            // nextEarningsDataGridViewTextBoxColumn
-            // 
-            this.nextEarningsDataGridViewTextBoxColumn.DataPropertyName = "NextEarnings";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.nextEarningsDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.nextEarningsDataGridViewTextBoxColumn.HeaderText = "NextEarnings";
-            this.nextEarningsDataGridViewTextBoxColumn.Name = "nextEarningsDataGridViewTextBoxColumn";
-            // 
-            // breakoutLevelDataGridViewTextBoxColumn
-            // 
-            this.breakoutLevelDataGridViewTextBoxColumn.DataPropertyName = "BreakoutLevel";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.breakoutLevelDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.breakoutLevelDataGridViewTextBoxColumn.HeaderText = "BreakoutLevel";
-            this.breakoutLevelDataGridViewTextBoxColumn.Name = "breakoutLevelDataGridViewTextBoxColumn";
-            // 
-            // stopDistanceDataGridViewTextBoxColumn
-            // 
-            this.stopDistanceDataGridViewTextBoxColumn.DataPropertyName = "StopDistance";
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.stopDistanceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.stopDistanceDataGridViewTextBoxColumn.HeaderText = "StopDistance";
-            this.stopDistanceDataGridViewTextBoxColumn.Name = "stopDistanceDataGridViewTextBoxColumn";
-            // 
-            // bidDataGridViewTextBoxColumn
-            // 
-            this.bidDataGridViewTextBoxColumn.DataPropertyName = "Bid";
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.bidDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.bidDataGridViewTextBoxColumn.HeaderText = "Bid";
-            this.bidDataGridViewTextBoxColumn.Name = "bidDataGridViewTextBoxColumn";
-            this.bidDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // askDataGridViewTextBoxColumn
-            // 
-            this.askDataGridViewTextBoxColumn.DataPropertyName = "Ask";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.askDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
-            this.askDataGridViewTextBoxColumn.HeaderText = "Ask";
-            this.askDataGridViewTextBoxColumn.Name = "askDataGridViewTextBoxColumn";
-            this.askDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ChangePercent
-            // 
-            this.ChangePercent.DataPropertyName = "ChangePercent";
-            this.ChangePercent.HeaderText = "ChangePercent";
-            this.ChangePercent.Name = "ChangePercent";
-            this.ChangePercent.ReadOnly = true;
-            // 
-            // entryLevelDataGridViewTextBoxColumn
-            // 
-            this.entryLevelDataGridViewTextBoxColumn.DataPropertyName = "EntryLevel";
-            this.entryLevelDataGridViewTextBoxColumn.HeaderText = "EntryLevel";
-            this.entryLevelDataGridViewTextBoxColumn.Name = "entryLevelDataGridViewTextBoxColumn";
-            this.entryLevelDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // PercentFromEntry
-            // 
-            this.PercentFromEntry.DataPropertyName = "PercentFromEntry";
-            this.PercentFromEntry.HeaderText = "Percent From Entry";
-            this.PercentFromEntry.Name = "PercentFromEntry";
-            this.PercentFromEntry.ReadOnly = true;
-            // 
-            // MinimumDealSize
-            // 
-            this.MinimumDealSize.DataPropertyName = "MinimumDealSize";
-            dataGridViewCellStyle10.Format = "N3";
-            dataGridViewCellStyle10.NullValue = null;
-            this.MinimumDealSize.DefaultCellStyle = dataGridViewCellStyle10;
-            this.MinimumDealSize.HeaderText = "MinimumDealSize";
-            this.MinimumDealSize.Name = "MinimumDealSize";
-            this.MinimumDealSize.ReadOnly = true;
-            // 
-            // positionSizeDataGridViewTextBoxColumn
-            // 
-            this.positionSizeDataGridViewTextBoxColumn.DataPropertyName = "PositionSize";
-            this.positionSizeDataGridViewTextBoxColumn.HeaderText = "PositionSize";
-            this.positionSizeDataGridViewTextBoxColumn.Name = "positionSizeDataGridViewTextBoxColumn";
-            this.positionSizeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // spreadPercentOfRiskDataGridViewTextBoxColumn
-            // 
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn.DataPropertyName = "SpreadPercentOfRisk";
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn.HeaderText = "SpreadPercentOfRisk";
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn.Name = "spreadPercentOfRiskDataGridViewTextBoxColumn";
-            this.spreadPercentOfRiskDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // LastUpdateTime
-            // 
-            this.LastUpdateTime.DataPropertyName = "LastUpdateTime";
-            dataGridViewCellStyle11.Format = "dd-MM-yy HH:mm:ss";
-            dataGridViewCellStyle11.NullValue = null;
-            this.LastUpdateTime.DefaultCellStyle = dataGridViewCellStyle11;
-            this.LastUpdateTime.HeaderText = "LastUpdateTime";
-            this.LastUpdateTime.Name = "LastUpdateTime";
-            this.LastUpdateTime.ReadOnly = true;
-            // 
-            // deleteGridViewColumn
-            // 
-            this.deleteGridViewColumn.HeaderText = "Delete";
-            this.deleteGridViewColumn.Name = "deleteGridViewColumn";
-            this.deleteGridViewColumn.Text = "Delete";
-            this.deleteGridViewColumn.UseColumnTextForButtonValue = true;
-            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(240F, 240F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(870, 731);
+            this.ClientSize = new System.Drawing.Size(2399, 1164);
             this.Controls.Add(this._MaxSpreadPercentNumeric);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label11);

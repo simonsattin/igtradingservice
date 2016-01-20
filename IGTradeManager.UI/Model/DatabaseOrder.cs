@@ -396,6 +396,11 @@ namespace IGTradeManager.UI.Model
             {
                 DetermineIsValidForWorkingOrder();
             }
+
+            if (e.PropertyName == "Status")
+            {
+                DetermineIsValidForWorkingOrder();
+            }
         }  
         
         private void DetermineIsSpreadPercentWithinParameter()
@@ -423,6 +428,12 @@ namespace IGTradeManager.UI.Model
             }
 
             if (PercentFromEntry > 0 || PercentFromEntry < -5)
+            {
+                IsValidForWorkingOrder = false;
+                return;
+            }
+
+            if (Status != "TRADEABLE")
             {
                 IsValidForWorkingOrder = false;
                 return;
